@@ -1,0 +1,25 @@
+{
+  "name": "App MCA Drapeaux",
+  "short_name": "MCA Drapeaux",
+  "description": "Configurateur de drapeaux publicitaires — Le Groupe MCA",
+  "start_url": "/app-mca-drapeaux/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#CD0C18",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

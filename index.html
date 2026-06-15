@@ -463,6 +463,8 @@ window.addEventListener('load',function(){
         <div class="ocard" data-s="1" data-v="Beach" style="overflow:visible"><div class="ochk">✓</div><span class="oic">🏖️</span><span class="olbl" data-t="t_beach">Beach Flag</span><div class="btip"><img src="img/beach_exemple.png" alt="Beach Flag"><div class="btip-lbl">Beach Flag — Ouvert à l'Année</div></div></div>
         <div class="ocard" data-s="1" data-v="Rectangulaire" style="overflow:visible"><div class="ochk">✓</div>
         <span class="oic">⬛</span><span class="olbl" data-t="t_rect">Rectangulaire</span><div class="btip"><img src="img/rect_exemple.jpg" alt="Drapeau rectangulaire"><div class="btip-lbl">Drapeau rectangulaire 3,5m</div></div></div>
+        <div class="ocard" data-s="1" data-v="Flag" style="overflow:visible"><div class="ochk">✓</div>
+        <span class="oic">🏳️</span><span class="olbl" data-t="t_flag">Drapeau</span><span class="osub" data-t="t_flag_s">3'×6' · 4'×8' · 5'×10'</span><div class="btip"><img src="img/flag_exemple.png" alt="Drapeau mural"><div class="btip-lbl">Drapeau mural — style pays</div></div></div>
         <div class="ocard" data-s="1" data-v="Toile" style="overflow:visible"><div class="ochk">✓</div>
         <span class="oic">🎴</span><span class="olbl" data-t="t_toile">Toile de remplacement</span><span class="osub" data-t="t_toile_s">Vous avez déjà le mât — toile seulement</span><div class="btip"><img src="img/toile_exemple.jpg" alt="Toile seulement"><div class="btip-lbl">Toile de remplacement</div></div></div>
       </div>
@@ -820,7 +822,7 @@ fr:{
   s5h:"Type de base ?",s5p:"Comment votre drapeau sera-t-il fixé ?",
   s6h:"Quantité et coordonnées",s6p:"Combien de drapeaux et comment vous joindre ?",qty_other:"Ou indiquez votre quantité :",
   s7h:"Votre résumé",s7p:"Vérifiez votre configuration avant d'envoyer.",
-  t_beach:"Beach Flag",t_beach_s:"Forme arquée · 3,5m ou 4,5m",t_rect:"Rectangulaire",t_rect_s:"Oriflamme droite · 1m · 2,5m · 3,5m",t_toile:"Toile de remplacement",t_toile_s:"Vous avez déjà le mât — toile seulement",qty_autres:"Autres",
+  t_beach:"Beach Flag",t_beach_s:"Forme arquée · 3,5m ou 4,5m",t_rect:"Rectangulaire",t_rect_s:"Oriflamme droite · 1m · 2,5m · 3,5m",t_flag:"Drapeau",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Toile de remplacement",t_toile_s:"Vous avez déjà le mât — toile seulement",qty_autres:"Autres",
   c_concave:"Concave",c_concave_s:"Courbe rentrante",c_convexe:"Convexe",c_convexe_s:"Courbe sortante",c_flamme:"Flamme",c_flamme_s:"Forme effilée",c_droit:"Droit",c_droit_s:"Bord carré net",
   b_cross:"Croix",b_cross_s:"Surface dure · béton / pavé",b_plate:"Plaque de sol",b_plate_s:"Surface dure · montage permanent",b_spike:"Spike",b_spike_s:"Gazon · sol meuble",
   lbl_name:"Votre nom complet",lbl_commerce:"Nom du commerce",lbl_email:"Votre adresse courriel",lbl_phone:"Téléphone",lbl_addr:"Adresse de livraison",lbl_ville:"Ville",lbl_zip:"Code postal",lbl_note:"Autre demande ou commentaire",lbl_note_ph:"Ex. : logo à envoyer, délai souhaité, question sur la toile…",
@@ -892,7 +894,7 @@ en:{
   s5h:"Base type?",s5p:"How will your flag be anchored?",
   s6h:"Quantity & contact info",s6p:"How many flags and how to reach you?",qty_other:"Or enter your quantity:",
   s7h:"Your summary",s7p:"Review your configuration before sending.",
-  t_beach:"Beach Flag",t_beach_s:"Arched shape · 3.5m or 4.5m",t_rect:"Rectangular",t_rect_s:"Straight feather flag · 1m · 2.5m · 3.5m",t_toile:"Fabric only",t_toile_s:"Replacement · no pole",qty_autres:"Other",
+  t_beach:"Beach Flag",t_beach_s:"Arched shape · 3.5m or 4.5m",t_rect:"Rectangular",t_rect_s:"Straight feather flag · 1m · 2.5m · 3.5m",t_flag:"Flag",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Fabric only",t_toile_s:"Replacement · no pole",qty_autres:"Other",
   c_concave:"Concave",c_concave_s:"Inward curve",c_convexe:"Convex",c_convexe_s:"Outward curve",c_flamme:"Flame",c_flamme_s:"Tapered shape",c_droit:"Straight",c_droit_s:"Square edge",
   b_cross:"Cross base",b_cross_s:"Hard surface · indoors",b_plate:"Floor plate",b_plate_s:"Hard floor · permanent mount",b_spike:"Ground spike",b_spike_s:"Lawn · soft ground",
   lbl_name:"Your full name",lbl_commerce:"Business name",lbl_email:"Your email address",lbl_phone:"Phone number",lbl_addr:"Delivery address",lbl_ville:"City",lbl_zip:"Postal code",lbl_note:"Additional request or comment",lbl_note_ph:"E.g.: logo to send, desired timeline, question about the fabric…",
@@ -955,6 +957,12 @@ const sizes={
     {v:"3,5m (Rectangulaire)",ic:"🔲",sub:"~3,5m · oriflamme droite",sub_en:"~3.5m · straight feather flag",price:"260 $"},
   ],
 
+  Flag:[
+    {v:"3×6 (Flag)",ic:"🏳️",sub:"3'×6' (36\"×72\") · 1 côté",sub_en:"3'×6' (36\"×72\") · single-sided",price:""},
+    {v:"4×8 (Flag)",ic:"🏳️",sub:"4'×8' (48\"×96\") · 1 côté",sub_en:"4'×8' (48\"×96\") · single-sided",price:""},
+    {v:"5×10 (Flag)",ic:"🏳️",sub:"5'×10' (60\"×120\") · 1 côté",sub_en:"5'×10' (60\"×120\") · single-sided",price:""},
+  ],
+
   Toile:[
     {v:"2,5m (Toile)",ic:"🏳️",sub:"~2,5 m · toile seulement",sub_en:"~2.5 m · fabric only",price:"90 $"},
     {v:"3,5m (Toile)",ic:"🚩",sub:"~3,5 m · 62×260 cm — le plus populaire",sub_en:"~3.5 m · 62×260 cm — most popular",price:"110 $"},
@@ -980,6 +988,11 @@ const faces={
     "1m (Rectangulaire)":[{v:"2 côtés — 120 $",ic:"🖼️",lbl:"Double face",lbl_en:"Double-sided",sub:"Double face inclus",sub_en:"Double-sided included",price:"120 $"}],
     "2,5m (Rectangulaire)":[{v:"1 côté — 190 $",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Simple face",sub_en:"Single-sided",price:"190 $"},{v:"2 côtés — 250 $",ic:"🖼️",lbl:"Double face",lbl_en:"Double-sided",sub:"Option double face +60 $",sub_en:"Double-sided option +$60",price:"250 $"}],
     "3,5m (Rectangulaire)":[{v:"1 côté — 260 $",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Simple face",sub_en:"Single-sided",price:"260 $"},{v:"2 côtés — 335 $",ic:"🖼️",lbl:"Double face",lbl_en:"Double-sided",sub:"Option double face +75 $",sub_en:"Double-sided option +$75",price:"335 $"}],
+  },
+  Flag:{
+    "3×6 (Flag)":[{v:"1 côté",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Impression 1 côté · polyester 110g",sub_en:"Single-sided · 110g polyester",price:""}],
+    "4×8 (Flag)":[{v:"1 côté",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Impression 1 côté · polyester 110g",sub_en:"Single-sided · 110g polyester",price:""}],
+    "5×10 (Flag)":[{v:"1 côté",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Impression 1 côté · polyester 110g",sub_en:"Single-sided · 110g polyester",price:""}],
   },
   Toile:{
     "2,5m (Toile)":[{v:"1 côté — 90 $",ic:"🖼️",lbl:"Simple face",lbl_en:"Single-sided",sub:"Simple face",sub_en:"Single-sided",price:"90 $"},{v:"2 côtés — 150 $",ic:"🖼️",lbl:"Double face",lbl_en:"Double-sided",sub:"Option double face +60 $",sub_en:"Double-sided option +$60",price:"150 $"}],
@@ -1063,7 +1076,7 @@ function buildFace(type,size){
 }
 
 function noBeach(){return sel["1"]&&sel["1"]!=="Beach";}
-function noBase(){return sel["1"]==="Toile";}
+function noBase(){return sel["1"]==="Toile"||sel["1"]==="Flag";}
 function showStep(id){document.querySelectorAll(".cfg-step").forEach(s=>{s.style.setProperty("display","none","important");s.classList.remove("on");});const el=document.getElementById(id);el.style.removeProperty("display");el.classList.add("on");}
 function ns(f){
   let next=f+1;

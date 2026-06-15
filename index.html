@@ -1020,6 +1020,8 @@ function showTab(id){
   ({promo:0,cfg:1,gal:2,inst:3})[id]!==undefined&&(document.querySelectorAll(".tab")[({promo:0,cfg:1,gal:2,inst:3})[id]].classList.add("on"));
   window.scrollTo({top:0,behavior:"smooth"});
 }
+// Lien direct vers un onglet via l'ancre URL (ex: #cfg → Configurateur)
+(function(){const h=(window.location.hash||"").replace("#","");if(["promo","cfg","gal","inst"].includes(h))requestAnimationFrame(()=>{showTab(h);window.scrollTo({top:0});});})();
 
 document.addEventListener("click",e=>{
   const c=e.target.closest(".ocard");

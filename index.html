@@ -1034,7 +1034,8 @@ function showTab(id){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 // Lien direct vers un onglet via l'ancre URL (ex: #cfg → Configurateur)
-(function(){const h=(window.location.hash||"").replace("#","");if(["promo","cfg","gal","inst"].includes(h))requestAnimationFrame(()=>{showTab(h);window.scrollTo({top:0});});})();
+// Le hash est effacé après usage pour éviter le conflit scroll navigateur vs onglets JS
+(function(){const h=(window.location.hash||"").replace("#","");if(["promo","cfg","gal","inst"].includes(h))requestAnimationFrame(()=>{showTab(h);window.scrollTo({top:0});history.replaceState(null,"",window.location.pathname);});})();
 
 document.addEventListener("click",e=>{
   const c=e.target.closest(".ocard");

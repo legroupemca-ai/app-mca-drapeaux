@@ -291,6 +291,10 @@ html{overflow-x:hidden}body{background:var(--blk);color:var(--wh);font-family:va
   .ocard .osub{font-size:11px}
   .btip{display:none!important}
 }
+#prodPeek{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#161616;border:2px solid var(--red);border-radius:12px;padding:10px;z-index:9999;width:200px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.75);pointer-events:none;animation:peekIn .2s ease}
+#prodPeekImg{width:100%;border-radius:8px;display:block}
+#prodPeekLbl{font-size:11px;color:rgba(255,255,255,.45);margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+@keyframes peekIn{from{opacity:0;transform:translateX(-50%) scale(.88)}to{opacity:1;transform:translateX(-50%) scale(1)}}
 
 /* Feature row : 1 colonne sous 380px */
 @media(max-width:380px){
@@ -1044,6 +1048,8 @@ document.addEventListener("click",e=>{
     document.querySelectorAll(`.ocard[data-s="${s}"]`).forEach(x=>x.classList.remove("sel"));
     c.classList.add("sel");
     sel[s]=v;
+    const _pi=c.querySelector(".btip img"),_pl=c.querySelector(".btip-lbl");
+    if(_pi)showProdPeek(_pi.src,_pl?_pl.textContent:"");
     if(s==="3f")sel["3"]=v;
     updatePriceEst();
     const nb=document.getElementById("n"+s);
@@ -1721,6 +1727,17 @@ function showToast(msg,ok){
   clearTimeout(t._tmr);
   t._tmr=setTimeout(function(){t.style.display='none';},ok===null?60000:5000);
 }
+let _pkTimer=null;
+function showProdPeek(src,lbl){
+  if(_pkTimer)clearTimeout(_pkTimer);
+  const el=document.getElementById("prodPeek");
+  document.getElementById("prodPeekImg").src=src;
+  document.getElementById("prodPeekLbl").textContent=lbl;
+  el.style.display="block";
+  el.style.animation="none";el.offsetHeight;el.style.animation="";
+  _pkTimer=setTimeout(()=>{el.style.display="none";},2500);
+}
 </script>
+<div id="prodPeek" style="display:none"><img id="prodPeekImg" src="" alt=""><div id="prodPeekLbl"></div></div>
 </body>
 </html>

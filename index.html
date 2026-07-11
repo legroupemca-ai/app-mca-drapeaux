@@ -491,6 +491,9 @@ window.addEventListener('load',function(){
       <div class="ogrid" id="carteFaceOpts"></div>
       <p class="step-sublbl" data-t="scf_coins_h" style="color:rgba(255,255,255,.5);font-size:12px;letter-spacing:1px;text-transform:uppercase;margin:18px 0 10px">Coins</p>
       <div class="ogrid" id="carteCoinOpts"></div>
+      <p class="step-sublbl" data-t="scf_info_h" style="color:rgba(255,255,255,.5);font-size:12px;letter-spacing:1px;text-transform:uppercase;margin:18px 0 10px">Fichier graphique</p>
+      <div class="ogrid" id="carteInfoOpts"></div>
+      <p id="infoNote" style="display:none;font-size:11px;color:rgba(255,210,0,.8);margin:10px 0 0;padding:9px 12px;background:rgba(255,210,0,.07);border-radius:8px;border:1px solid rgba(255,210,0,.2)" data-t="scf_info_note">⚠️ L'infographie de base n'inclut pas la reconstitution de fichier. Les images générées par IA ne sont pas acceptées.</p>
       <div class="snav"><button class="bbk" onclick="showStep('scarte');updateProg()" data-t="btn_back">← Retour</button><button class="bnt" id="ncartef" onclick="goS6fromCarteFace()" disabled data-t="btn_next">Continuer →</button></div>
     </div>
 
@@ -852,7 +855,7 @@ fr:{
   s5h:"Type de base ?",s5p:"Comment votre drapeau sera-t-il fixé ?",
   s6h:"Quantité et coordonnées",s6p:"Combien de drapeaux et comment vous joindre ?",qty_other:"Ou indiquez votre quantité :",
   s7h:"Votre résumé",s7p:"Vérifiez votre configuration avant d'envoyer.",
-  t_beach:"Beach Flag",t_beach_s:"Forme arquée · 3,5m ou 4,5m",t_rect:"Rectangulaire",t_rect_s:"Oriflamme droite · 1m · 2,5m · 3,5m",t_flag:"Drapeau",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Toile de remplacement",t_toile_s:"Vous avez déjà le mât — toile seulement",t_cartes:"Cartes professionnelles",t_cartes_s:"3,5 × 2 po · Recto-verso",t_autre:"Autre demande",t_autre_s:"Question ou service sur mesure",sc_h:"Quelle quantité ?",sc_p:"Choisissez le nombre de cartes. Un estimé vous sera envoyé.",scf_h:"Options d'impression",scf_p:"Choisissez vos préférences pour vos cartes.",scf_face_h:"Impression",scf_coins_h:"Coins",qty_autres:"Autres",
+  t_beach:"Beach Flag",t_beach_s:"Forme arquée · 3,5m ou 4,5m",t_rect:"Rectangulaire",t_rect_s:"Oriflamme droite · 1m · 2,5m · 3,5m",t_flag:"Drapeau",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Toile de remplacement",t_toile_s:"Vous avez déjà le mât — toile seulement",t_cartes:"Cartes professionnelles",t_cartes_s:"3,5 × 2 po · Recto-verso",t_autre:"Autre demande",t_autre_s:"Question ou service sur mesure",sc_h:"Quelle quantité ?",sc_p:"Choisissez le nombre de cartes. Un estimé vous sera envoyé.",scf_h:"Options d'impression",scf_p:"Choisissez vos préférences pour vos cartes.",scf_face_h:"Impression",scf_coins_h:"Coins",scf_info_h:"Fichier graphique",scf_info_note:"⚠️ L'infographie de base n'inclut pas la reconstitution de fichier. Les images générées par IA ne sont pas acceptées.",sk_info:"Fichier / Infographie",qty_autres:"Autres",
   c_concave:"Concave",c_concave_s:"Courbe rentrante",c_convexe:"Convexe",c_convexe_s:"Courbe sortante",c_flamme:"Flamme",c_flamme_s:"Forme effilée",c_droit:"Droit",c_droit_s:"Bord carré net",
   b_cross:"Croix",b_cross_s:"Surface dure · béton / pavé",b_plate:"Plaque de sol",b_plate_s:"Surface dure · montage permanent",b_spike:"Spike",b_spike_s:"Gazon · sol meuble",
   lbl_name:"Votre nom complet",lbl_commerce:"Nom du commerce",lbl_email:"Votre adresse courriel",lbl_phone:"Téléphone",lbl_addr:"Adresse de livraison",lbl_ville:"Ville",lbl_zip:"Code postal",lbl_note:"Autre demande ou commentaire",lbl_note_ph:"Ex. : logo à envoyer, délai souhaité, question sur la toile…",
@@ -924,7 +927,7 @@ en:{
   s5h:"Base type?",s5p:"How will your flag be anchored?",
   s6h:"Quantity & contact info",s6p:"How many flags and how to reach you?",qty_other:"Or enter your quantity:",
   s7h:"Your summary",s7p:"Review your configuration before sending.",
-  t_beach:"Beach Flag",t_beach_s:"Arched shape · 3.5m or 4.5m",t_rect:"Rectangular",t_rect_s:"Straight feather flag · 1m · 2.5m · 3.5m",t_flag:"Flag",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Fabric only",t_toile_s:"Replacement · no pole",t_autre:"Other request",t_autre_s:"Custom question or service",t_cartes:"Business cards",t_cartes_s:"3.5 × 2 in · Double-sided",sc_h:"What quantity?",sc_p:"Choose the number of cards. An estimate will be sent to you.",scf_h:"Print options",scf_p:"Choose your preferences for your cards.",scf_face_h:"Print side",scf_coins_h:"Corners",qty_autres:"Other",
+  t_beach:"Beach Flag",t_beach_s:"Arched shape · 3.5m or 4.5m",t_rect:"Rectangular",t_rect_s:"Straight feather flag · 1m · 2.5m · 3.5m",t_flag:"Flag",t_flag_s:"3'×6' · 4'×8' · 5'×10'",t_toile:"Fabric only",t_toile_s:"Replacement · no pole",t_autre:"Other request",t_autre_s:"Custom question or service",t_cartes:"Business cards",t_cartes_s:"3.5 × 2 in · Double-sided",sc_h:"What quantity?",sc_p:"Choose the number of cards. An estimate will be sent to you.",scf_h:"Print options",scf_p:"Choose your preferences for your cards.",scf_face_h:"Print side",scf_coins_h:"Corners",scf_info_h:"Artwork file",scf_info_note:"⚠️ Basic design does not include file reconstruction. AI-generated images are not accepted.",sk_info:"File / Design",qty_autres:"Other",
   c_concave:"Concave",c_concave_s:"Inward curve",c_convexe:"Convex",c_convexe_s:"Outward curve",c_flamme:"Flame",c_flamme_s:"Tapered shape",c_droit:"Straight",c_droit_s:"Square edge",
   b_cross:"Cross base",b_cross_s:"Hard surface · indoors",b_plate:"Floor plate",b_plate_s:"Hard floor · permanent mount",b_spike:"Ground spike",b_spike_s:"Lawn · soft ground",
   lbl_name:"Your full name",lbl_commerce:"Business name",lbl_email:"Your email address",lbl_phone:"Phone number",lbl_addr:"Delivery address",lbl_ville:"City",lbl_zip:"Postal code",lbl_note:"Additional request or comment",lbl_note_ph:"E.g.: logo to send, desired timeline, question about the fabric…",
@@ -1150,7 +1153,7 @@ function goCarteFace(){
   showStep("scartef");updateProg();window.scrollTo({top:0,behavior:"smooth"});
 }
 function buildCarteFace(){
-  function fillGrid(gridId,opts,selKey){
+  function fillGrid(gridId,opts,selKey,onChange){
     const g=document.getElementById(gridId);
     if(g.children.length)return;
     opts.forEach(o=>{
@@ -1159,7 +1162,7 @@ function buildCarteFace(){
       d.innerHTML=`<div class="ochk">✓</div><span class="olbl">${o.lbl[lang]||o.lbl.fr}</span>`;
       d.addEventListener("click",function(){
         g.querySelectorAll(".ocard").forEach(c=>c.classList.remove("sel"));
-        this.classList.add("sel");sel[selKey]=o.v;chkCartef();
+        this.classList.add("sel");sel[selKey]=o.v;if(onChange)onChange(o.v);chkCartef();
       });
       g.appendChild(d);
     });
@@ -1172,9 +1175,16 @@ function buildCarteFace(){
     {v:"Coins carrés",lbl:{fr:"Coins carrés",en:"Square corners"}},
     {v:"Coins arrondis",lbl:{fr:"Coins arrondis",en:"Rounded corners"}},
   ],"carte_coins");
+  fillGrid("carteInfoOpts",[
+    {v:"Fichier",lbl:{fr:"Oui, j'ai mon fichier",en:"Yes, I have my file"}},
+    {v:"Infographie",lbl:{fr:"Non, infographie de base requise",en:"No, basic design needed"}},
+  ],"carte_infographie",function(v){
+    const n=document.getElementById("infoNote");
+    if(n)n.style.display=v==="Infographie"?"block":"none";
+  });
 }
 function chkCartef(){
-  document.getElementById("ncartef").disabled=!(sel["carte_face"]&&sel["carte_coins"]);
+  document.getElementById("ncartef").disabled=!(sel["carte_face"]&&sel["carte_coins"]&&sel["carte_infographie"]);
 }
 function goS6fromCarteFace(){
   sel["2"]="—";sel["3"]="—";sel["4"]="—";sel["5"]="—";
@@ -1207,8 +1217,10 @@ function buildSum(){
   const isCarte=sel["1"]==="Cartes";
   const faceEn={"Recto":"Single-sided","Recto-verso":"Double-sided"};
   const coinsEn={"Coins carrés":"Square corners","Coins arrondis":"Rounded corners"};
+  const infoEn={"Fichier":"File provided","Infographie":"Basic design needed"};
   const faceVal=sel["carte_face"]||"—";
   const coinsVal=sel["carte_coins"]||"—";
+  const infoVal=sel["carte_infographie"]||"—";
   const carteFormat=lang==="fr"
     ?`3,5 × 2 po · ${faceVal} · ${coinsVal}`
     :`3.5 × 2 in · ${faceEn[faceVal]||faceVal} · ${coinsEn[coinsVal]||coinsVal}`;
@@ -1216,6 +1228,7 @@ function buildSum(){
     {k:t.sk_type,v:sel["1"]||"—"},
     ...(isCarte?[
       {k:t.sk_size,v:carteFormat},
+      {k:t.sk_info,v:lang==="fr"?infoVal:(infoEn[infoVal]||infoVal)},
     ]:[
       {k:t.sk_size,v:(sel["2"]||"—").split(" (")[0]},
       {k:t.sk_face,v:(sel["3"]||"—").split(" — ")[0]},
@@ -1239,7 +1252,7 @@ function buildSum(){
   if(note)rows.push({k:t.lbl_note,v:note});
   document.getElementById("sumRows").innerHTML=rows.map(r=>`<div class="srow"><span class="sk">${r.k}</span><span class="sv">${r.v}</span></div>`).join("");
   const prodLines=isCarte
-    ?`${t.sk_size} : ${carteFormat}\n`
+    ?`${t.sk_size} : ${carteFormat}\n${t.sk_info} : ${lang==="fr"?infoVal:(infoEn[infoVal]||infoVal)}\n`
     :`${t.sk_size} : ${(sel["2"]||"—").split(" (")[0]}\n${t.sk_face} : ${(sel["3"]||"—").split(" — ")[0]}\n${noBeach()?"":t.sk_cut+" : "+(sel["4"]||"—")+"\n"}${noBase()?"":t.sk_base+" : "+(sel["5"]||"—")+"\n"}`;
   const body=`${lang==="fr"?"Bonjour Le Groupe MCA,":"Hello Le Groupe MCA,"}\n\n${lang==="fr"?"Je souhaite recevoir une soumission pour :":"I would like a quote for:"}\n\n${t.sk_type} : ${sel["1"]||"—"}\n${prodLines}${t.sk_qty} : ${sel["qty"]||"—"}\n\n${t.sk_name} : ${name}\n${commerce?"\n"+(lang==="fr"?"Nom du commerce":"Business name")+" : "+commerce:""}${lang==="fr"?"Courriel":"Email"} : ${email}\n${phone?"\n"+(lang==="fr"?"Téléphone":"Phone")+" : "+phone:""}\n${addr?"\n"+(lang==="fr"?"Adresse":"Address")+" : "+addr:""}\n${ville?"\n"+(lang==="fr"?"Ville":"City")+" : "+ville:""}\n${zip?"\n"+(lang==="fr"?"Code postal":"Postal code")+" : "+zip:""}\n\n${note?"\n"+(lang==="fr"?"Commentaire":"Note")+" : "+note+"\n\n":""}${lang==="fr"?"Merci,":"Thank you,"}\n${name}`;
   copyVal=body;

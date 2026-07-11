@@ -548,6 +548,13 @@ window.addEventListener('load',function(){
       <button class="bcopy" id="copyBtn" onclick="doCopy()" data-t="btn_copy">📋 Copier le résumé</button>
       <button class="brst" onclick="reset7()" data-t="btn_restart">↩ Recommencer depuis le début</button>
       <div class="tbox"><strong data-t="thanks1">Merci !</strong> <span data-t="thanks2">Le Groupe MCA vous reviendra avec une soumission personnalisée dès que possible.</span></div>
+      <div id="pushNudge" style="display:none;margin-top:14px;background:rgba(205,12,24,.08);border:1px solid rgba(205,12,24,.25);border-radius:var(--r);padding:14px 16px;text-align:center">
+        <p style="font-size:13px;color:rgba(255,255,255,.75);margin:0 0 10px" data-t="nudge_msg">🔔 Restez informé de nos promos et nouveautés — activez les notifications.</p>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <button onclick="nudgeYes()" style="background:var(--red);color:#fff;border:none;padding:8px 16px;border-radius:6px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit" data-t="nudge_yes">Activer</button>
+          <button onclick="nudgeNo()" style="background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-family:inherit" data-t="nudge_no">Non merci</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -860,7 +867,7 @@ fr:{
     gal_cap_7:"Beach Flag · Meet automobile",
   btn_next:"Continuer →",btn_back:"← Retour",btn_summary:"Voir le résumé →",
   btn_send:"Envoyer ma demande de soumission",btn_copy:"📋 Copier le résumé",btn_restart:"↩ Recommencer depuis le début",
-  sum_title:"📋 Configuration sélectionnée",thanks1:"Merci !",thanks2:"Le Groupe MCA vous reviendra avec une soumission personnalisée dès que possible. La production débute après réception de votre dépôt (50 %) et approbation de l'épreuve. Délai : 7 à 10 jours ouvrables.",
+  sum_title:"📋 Configuration sélectionnée",thanks1:"Merci !",thanks2:"Le Groupe MCA vous reviendra avec une soumission personnalisée dès que possible. La production débute après réception de votre dépôt (50 %) et approbation de l'épreuve. Délai : 7 à 10 jours ouvrables.",nudge_msg:"🔔 Restez informé de nos promos et nouveautés — activez les notifications.",nudge_yes:"Activer",nudge_no:"Non merci",
   sk_type:"Type",sk_size:"Grandeur",sk_face:"Impression",sk_cut:"Découpe",sk_base:"Base",sk_qty:"Quantité",sk_name:"Nom",sk_email:"Courriel",
   inst_title:"Guide d'assemblage",inst_sub:"Beach Flag — 3 sections (3,5m) · 4 sections (4,5m) · 5 sections (5,5m)",
   warn_title:"Avertissement — Lire avant de commencer",
@@ -933,7 +940,7 @@ en:{
     gal_cap_7:"Beach Flag · Car Meet",
   btn_next:"Continue →",btn_back:"← Back",btn_summary:"View summary →",
   btn_send:"Send my quote request",btn_copy:"📋 Copy summary",btn_restart:"↩ Start over",
-  sum_title:"📋 Selected configuration",thanks1:"Thank you!",thanks2:"Le Groupe MCA will get back to you with a personalized quote as soon as possible. Production starts after your deposit (50%) is received and proof is approved. Delivery: 7 to 10 business days.",
+  sum_title:"📋 Selected configuration",thanks1:"Thank you!",thanks2:"Le Groupe MCA will get back to you with a personalized quote as soon as possible. Production starts after your deposit (50%) is received and proof is approved. Delivery: 7 to 10 business days.",nudge_msg:"🔔 Stay updated on our promos and news — enable notifications.",nudge_yes:"Enable",nudge_no:"No thanks",
   sk_type:"Type",sk_size:"Size",sk_face:"Print",sk_cut:"Cut",sk_base:"Base",sk_qty:"Quantity",sk_name:"Name",sk_email:"Email",
   inst_title:"Assembly Guide",inst_sub:"Beach Flag — 3 sections (3.5m) · 4 sections (4.5m) · 5 sections (5.5m)",
   warn_title:"Warning — Read before starting",
@@ -1175,6 +1182,13 @@ function buildSum(){
   copyVal=body;
   const subj=encodeURIComponent(`${lang==="fr"?"Demande de soumission":"Quote request"} — Drapeau ${(sel["2"]||"").split(" (")[0]} ${sel["1"]||""}`);
   document.getElementById("mailLink").href=`mailto:legroupemca@gmail.com?subject=${subj}&body=${encodeURIComponent(body)}`;
+  const ml=document.getElementById('mailLink');
+  if(!ml._nudge){
+    ml._nudge=true;
+    ml.addEventListener('click',()=>setTimeout(()=>{
+      if(Notification.permission!=='granted')document.getElementById('pushNudge').style.display='block';
+    },1200));
+  }
 }
 
 function doCopy(){
@@ -1186,6 +1200,8 @@ function doCopy(){
     });
   }
 }
+function nudgeYes(){document.getElementById('pushNudge').style.display='none';initPush();}
+function nudgeNo(){document.getElementById('pushNudge').style.display='none';}
 
 function reset7(){
   Object.keys(sel).forEach(k=>delete sel[k]);
@@ -1469,7 +1485,7 @@ const db = firebase.firestore();
 let _swReg=null;
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./firebase-messaging-sw.js')
-    .then(reg=>{_swReg=reg;setTimeout(initPush,3000);})
+    .then(reg=>{_swReg=reg;if(Notification.permission==='granted')setTimeout(initPush,3000);})
     .catch(e=>console.warn('SW:',e));
 }
 

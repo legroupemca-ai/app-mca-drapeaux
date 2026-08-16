@@ -560,7 +560,7 @@ window.addEventListener('load',function(){
       <a id="mailLink" class="bsend" href="#"><span>📧</span><span data-t="btn_send">Envoyer ma demande de soumission</span></a>
       <button class="bcopy" id="copyBtn" onclick="doCopy()" data-t="btn_copy">📋 Copier le résumé</button>
       <button class="brst" onclick="reset7()" data-t="btn_restart">↩ Recommencer depuis le début</button>
-      <div class="tbox"><strong data-t="thanks1">Merci !</strong> <span data-t="thanks2">Le Groupe MCA vous reviendra avec une soumission personnalisée dès que possible.</span></div>
+      <div class="tbox" id="sentBox" style="display:none"><strong data-t="thanks1">Merci !</strong> <span data-t="thanks2">Le Groupe MCA vous reviendra avec une soumission personnalisée dès que possible.</span></div>
       <div id="pushNudge" style="display:none;margin-top:14px;background:rgba(205,12,24,.08);border:1px solid rgba(205,12,24,.25);border-radius:var(--r);padding:14px 16px;text-align:center">
         <p style="font-size:13px;color:rgba(255,255,255,.75);margin:0 0 10px" data-t="nudge_msg">🔔 Restez informé de nos promos et nouveautés — activez les notifications.</p>
         <div style="display:flex;gap:8px;justify-content:center">
@@ -1254,7 +1254,7 @@ function buildSum(){
   const prodLines=isCarte
     ?`${t.sk_size} : ${carteFormat}\n${t.sk_info} : ${lang==="fr"?infoVal:(infoEn[infoVal]||infoVal)}\n`
     :`${t.sk_size} : ${(sel["2"]||"—").split(" (")[0]}\n${t.sk_face} : ${(sel["3"]||"—").split(" — ")[0]}\n${noBeach()?"":t.sk_cut+" : "+(sel["4"]||"—")+"\n"}${noBase()?"":t.sk_base+" : "+(sel["5"]||"—")+"\n"}`;
-  const body=`${lang==="fr"?"Bonjour Le Groupe MCA,":"Hello Le Groupe MCA,"}\n\n${lang==="fr"?"Je souhaite recevoir une soumission pour :":"I would like a quote for:"}\n\n${t.sk_type} : ${sel["1"]||"—"}\n${prodLines}${t.sk_qty} : ${sel["qty"]||"—"}\n\n${t.sk_name} : ${name}\n${commerce?"\n"+(lang==="fr"?"Nom du commerce":"Business name")+" : "+commerce:""}${lang==="fr"?"Courriel":"Email"} : ${email}\n${phone?"\n"+(lang==="fr"?"Téléphone":"Phone")+" : "+phone:""}\n${addr?"\n"+(lang==="fr"?"Adresse":"Address")+" : "+addr:""}\n${ville?"\n"+(lang==="fr"?"Ville":"City")+" : "+ville:""}\n${zip?"\n"+(lang==="fr"?"Code postal":"Postal code")+" : "+zip:""}\n\n${note?"\n"+(lang==="fr"?"Commentaire":"Note")+" : "+note+"\n\n":""}${lang==="fr"?"Merci,":"Thank you,"}\n${name}`;
+  const body=`${lang==="fr"?"Bonjour Le Groupe MCA,":"Hello Le Groupe MCA,"}\n\n${lang==="fr"?"Je souhaite recevoir une soumission pour :":"I would like a quote for:"}\n\n${t.sk_type} : ${sel["1"]||"—"}\n${prodLines}${t.sk_qty} : ${sel["qty"]||"—"}\n\n${t.sk_name} : ${name}\n${commerce?"\n"+(lang==="fr"?"Nom du commerce":"Business name")+" : "+commerce+"\n":""}${lang==="fr"?"Courriel":"Email"} : ${email}\n${phone?"\n"+(lang==="fr"?"Téléphone":"Phone")+" : "+phone:""}\n${addr?"\n"+(lang==="fr"?"Adresse":"Address")+" : "+addr:""}\n${ville?"\n"+(lang==="fr"?"Ville":"City")+" : "+ville:""}\n${zip?"\n"+(lang==="fr"?"Code postal":"Postal code")+" : "+zip:""}\n\n${note?"\n"+(lang==="fr"?"Commentaire":"Note")+" : "+note+"\n\n":""}${lang==="fr"?"Merci,":"Thank you,"}\n${name}`;
   copyVal=body;
   const subj=isCarte
     ?encodeURIComponent(lang==="fr"?"Demande d'estimé — Cartes professionnelles":"Quote request — Business cards")
@@ -1263,9 +1263,19 @@ function buildSum(){
   const ml=document.getElementById('mailLink');
   if(!ml._nudge){
     ml._nudge=true;
-    ml.addEventListener('click',()=>setTimeout(()=>{
-      if(Notification.permission!=='granted')document.getElementById('pushNudge').style.display='block';
-    },1200));
+    ml.addEventListener('click',()=>{
+      /* 2026-08-16 — 3 courriels identiques en 39 s d'une même personne. La boîte
+         « Merci ! » était affichée AVANT le clic : elle ne confirmait rien. Et un
+         encadré ROUGE surgissait 1,2 s après, ce qui se lit « ça n'a pas marché ». */
+      const sb=document.getElementById('sentBox'); if(sb) sb.style.display='';
+      const lbl=ml.querySelector('[data-t="btn_send"]');
+      if(lbl&&!ml._sent){ml._sent=true;ml._orig=lbl.textContent;
+        lbl.textContent='\u2713 '+(lang==='fr'?'Demande envoy\u00e9e':'Request sent');
+        ml.style.opacity='.6';}
+      setTimeout(()=>{
+        if(Notification.permission!=='granted')document.getElementById('pushNudge').style.display='block';
+      },6000);
+    });
   }
 }
 
@@ -1282,6 +1292,10 @@ function nudgeYes(){document.getElementById('pushNudge').style.display='none';in
 function nudgeNo(){document.getElementById('pushNudge').style.display='none';}
 
 function reset7(){
+  const _sb=document.getElementById('sentBox'); if(_sb)_sb.style.display='none';
+  const _ml=document.getElementById('mailLink');
+  if(_ml&&_ml._sent){const _l=_ml.querySelector('[data-t="btn_send"]');
+    if(_l&&_ml._orig)_l.textContent=_ml._orig; _ml._sent=false; _ml.style.opacity='';}
   Object.keys(sel).forEach(k=>delete sel[k]);
   document.querySelectorAll(".ocard,.qbtn").forEach(x=>x.classList.remove("sel"));
   document.getElementById("cname").value="";document.getElementById("cemail").value="";["ccommerce","cphone","caddr","cville","czip"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});const qiR=document.getElementById("qtyInp");if(qiR)qiR.value="";const nr=document.getElementById("cnote");if(nr)nr.value="";const ow=document.getElementById("qtyOtherWrap");if(ow)ow.style.display="none";

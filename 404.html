@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Groupe MCA — Drapeaux Publicitaires</title>
+
+<!--
+  2026-08-24 — POURQUOI CE FICHIER EXISTE
+
+  Le domaine legroupemca.com a ete branche sur l'app ce jour-la. Avant, l'app
+  vivait a legroupemca-ai.github.io/app-mca-drapeaux/ et son manifest.json
+  declarait start_url "/app-mca-drapeaux/". Sur le domaine racine ce chemin
+  n'existe plus : GitHub Pages rend 404.
+
+  Le manifest est corrige ("./"), MAIS une app DEJA INSTALLEE garde l'ancienne
+  adresse copiee dans son raccourci — une correction serveur ne l'atteint pas.
+  Christian l'a vu en direct sur Android : icone installee -> 404.
+
+  Ce fichier rattrape TOUS les cas d'un coup, sans que personne reinstalle :
+  toute adresse inconnue sous legroupemca.com renvoie a la racine, donc a l'app.
+  Il couvre aussi les anciens liens en circulation (Meta, Messenger, cartes).
+
+  ⛔ Le <meta refresh> est present EN PLUS du redirect JS : si le JS est bloque,
+  la page doit quand meme partir. Et un lien visible reste en dernier recours,
+  parce qu'un client qui voit une page blanche s'en va.
+-->
+
+<meta http-equiv="refresh" content="0; url=/">
+<link rel="canonical" href="https://legroupemca.com/">
+<script>location.replace("/" + location.hash);</script>
+
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: #0d0d0d; color: #fff;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center; padding: 24px;
+  }
+  .b { max-width: 360px; }
+  h1 { font-size: 19px; font-weight: 700; margin: 0 0 10px; }
+  p  { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.65); margin: 0 0 22px; }
+  a.go {
+    display: inline-block; background: #CD0C18; color: #fff; text-decoration: none;
+    padding: 13px 26px; border-radius: 10px; font-weight: 700; font-size: 15px;
+  }
+  a.alt { display: block; margin-top: 18px; color: rgba(255,255,255,.55); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="b">
+    <h1>Le Groupe MCA</h1>
+    <p>Un instant, on vous emmène au configurateur de drapeaux…</p>
+    <a class="go" href="/">Ouvrir le configurateur</a>
+    <a class="alt" href="mailto:info@legroupemca.com">ou écrivez-nous : info@legroupemca.com</a>
+  </div>
+</body>
+</html>

@@ -380,7 +380,7 @@ window.addEventListener('load',function(){
   <div class="hdr-right">
     <div class="hdr-contact">
       <a href="tel:5149166162">514 916-6162</a><br>
-      <a href="mailto:legroupemca@gmail.com">legroupemca@gmail.com</a>
+      <a href="mailto:info@legroupemca.com">info@legroupemca.com</a>
     </div>
     <button class="btn-install" id="btnInstall" onclick="instModal(true)">📲 <span data-t="install_btn">Installer l'app</span></button>
     <div class="lang-toggle">
@@ -840,7 +840,7 @@ window.addEventListener('load',function(){
 <footer class="ft">
   <strong id="ftLogo" style="color:rgba(255,255,255,.5);cursor:default;user-select:none">Le Groupe MCA</strong> ·
   <a href="tel:5149166162">514 916-6162</a> ·
-  <a href="mailto:legroupemca@gmail.com">legroupemca@gmail.com</a>
+  <a href="mailto:info@legroupemca.com">info@legroupemca.com</a>
 </footer>
 
 <script>
@@ -1266,7 +1266,7 @@ function buildSum(){
   const subj=isCarte
     ?encodeURIComponent(lang==="fr"?"Demande d'estimé — Cartes professionnelles":"Quote request — Business cards")
     :encodeURIComponent(`${lang==="fr"?"Demande de soumission":"Quote request"} — Drapeau ${(sel["2"]||"").split(" (")[0]} ${sel["1"]||""}`);
-  document.getElementById("mailLink").href=`mailto:legroupemca@gmail.com?subject=${subj}&body=${encodeURIComponent(body)}`;
+  document.getElementById("mailLink").href=`mailto:info@legroupemca.com?subject=${subj}&body=${encodeURIComponent(body)}`;
   const ml=document.getElementById('mailLink');
   if(!ml._nudge){
     ml._nudge=true;
@@ -1543,9 +1543,9 @@ function photoAddToGallery(){
     compressPhoto(pmFile, 600, 0.72, function(thumb){
       emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, {
         to_name  : 'Le Groupe MCA',
-        to_email : 'legroupemca@gmail.com',
+        to_email : 'info@legroupemca.com',
         from_name: name + (city ? ' — ' + city : ''),
-        reply_to : email || 'legroupemca@gmail.com',
+        reply_to : email || 'info@legroupemca.com',
         message  : '📷 Nouvelle photo client soumise via l\'App MCA Drapeaux.\n\nNom : ' + name + '\nVille : ' + (city||'N/A') + '\nCourriel : ' + (email||'Non fourni')
       }).then(function(){
         console.log('Email envoyé ✓');

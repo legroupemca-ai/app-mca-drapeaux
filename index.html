@@ -1303,24 +1303,58 @@ function buildSum(){
     :encodeURIComponent(`${lang==="fr"?"Demande de soumission":"Quote request"} — Drapeau ${(sel["2"]||"").split(" (")[0]} ${sel["1"]||""}`);
   document.getElementById("mailLink").href=`mailto:info@legroupemca.com?subject=${subj}&body=${encodeURIComponent(body)}`;
   const ml=document.getElementById('mailLink');
+  /* ⛔ 2026-09-02 — LA CHARGE EST STOCKÉE À CHAQUE CONSTRUCTION, jamais capturée.
+     L'écouteur n'est attaché qu'UNE fois (garde `_nudge`) : une fermeture aurait figé
+     le corps du PREMIER passage, et un client qui recule pour changer sa configuration
+     aurait envoyé l'ancienne. */
+  ml._payload={body:body,name:name,email:email,mailto:ml.href};
   if(!ml._nudge){
     ml._nudge=true;
-    ml.addEventListener('click',()=>{
-      /* 2026-08-16 — 3 courriels identiques en 39 s d'une même personne. La boîte
-         « Merci ! » était affichée AVANT le clic : elle ne confirmait rien. Et un
-         encadré ROUGE surgissait 1,2 s après, ce qui se lit « ça n'a pas marché ». */
-      const sb=document.getElementById('sentBox'); if(sb) sb.style.display='';
+    ml.addEventListener('click',function(e){
+      const p=ml._payload||{};
       const lbl=ml.querySelector('[data-t="btn_send"]');
-      if(lbl&&!ml._sent){ml._sent=true;ml._orig=lbl.textContent;
-        lbl.textContent='\u2713 '+(lang==='fr'?'Demande envoy\u00e9e':'Request sent');
-        ml.style.opacity='.6';}
-      setTimeout(()=>{
-        if(Notification.permission!=='granted')document.getElementById('pushNudge').style.display='block';
-      },6000);
+      function marquerEnvoye(){
+        /* 2026-08-16 — 3 courriels identiques en 39 s d'une même personne. La boîte
+           « Merci ! » s'affichait AVANT le clic : elle ne confirmait rien. Avec EmailJS
+           elle n'apparaît plus qu'après un envoi RÉELLEMENT accepté. */
+        const sb=document.getElementById('sentBox'); if(sb) sb.style.display='';
+        if(lbl&&!ml._sent){ml._sent=true;ml._orig=lbl.textContent;
+          lbl.textContent='✓ '+(lang==='fr'?'Demande envoyée':'Request sent');
+          ml.style.opacity='.6';}
+        setTimeout(function(){
+          if(Notification.permission!=='granted')document.getElementById('pushNudge').style.display='block';
+        },6000);
+      }
+      /* ⭐ ENVOI DEPUIS LA PAGE — plus aucune dépendance à une app Mail installée.
+         C'est ce que `mailto:` ne pouvait pas faire : il meurt en silence dans la
+         webview de Facebook et sur un téléphone sans app Mail (mesuré 2026-08-24).
+         ⛔ `ejsReady||ejsInit()` et NON `ejsInit()` seul : ejsInit rend FALSE quand
+         EmailJS est DÉJÀ initialisé (par le formulaire photo). Tester ejsInit() seul
+         aurait basculé sur mailto: précisément quand EmailJS fonctionnait. */
+      if(typeof emailjs!=='undefined' && (ejsReady||ejsInit())){
+        e.preventDefault();
+        if(lbl&&!ml._sent) lbl.textContent=(lang==='fr'?'Envoi en cours…':'Sending…');
+        emailjs.send(EJS_SERVICE_ID,EJS_TEMPLATE_ID,{
+          to_name  :'Le Groupe MCA',
+          to_email :'info@legroupemca.com',
+          from_name:(p.name||'Client')+' — App MCA',
+          reply_to :p.email||'info@legroupemca.com',
+          message  :p.body||''
+        }).then(function(){marquerEnvoye();})
+          .catch(function(err){
+            /* ⛔ JAMAIS de cul-de-sac : si l'envoi échoue, on rend la main à mailto:
+               plutôt que de laisser le client devant un bouton mort. */
+            console.warn('EmailJS soumission — bascule sur mailto:',err);
+            if(lbl&&!ml._sent) lbl.textContent=T[lang].btn_send;
+            if(p.mailto) location.href=p.mailto;
+          });
+      }else{
+        marquerEnvoye();
+      }
     });
   }
-}
 
+}
 function doCopy(){
   if(navigator.clipboard&&copyVal){
     navigator.clipboard.writeText(copyVal).then(()=>{

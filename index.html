@@ -371,6 +371,28 @@ h2{font-family:var(--titre);font-variation-settings:"wdth" 108;font-size:clamp(1
 .carte-photo{width:100%;border-radius:10px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
   transform:rotate(-3deg);transition:transform .6s var(--ease)}
 .cartes-bloc:hover .carte-photo{transform:rotate(0)}
+/* recto / verso : la carte pivote au clic (2026-09-25) */
+.carte-flip{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;perspective:1400px;
+  transform:rotate(-3deg);transition:transform .6s var(--ease)}
+.cartes-bloc:hover .carte-flip{transform:rotate(0)}
+.carte-flip .carte-photo,.cartes-bloc:hover .carte-flip .carte-photo{transform:none}
+.carte-int{display:grid;width:100%;transform-style:preserve-3d;transition:transform .8s var(--ease)}
+.carte-int>img{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  transition:opacity 0s linear .4s}
+/* ⛔ backface-visibility SEUL ne suffit pas : mesuré le 2026-09-25, la 3D était APLATIE dans
+   ce bloc (le recto restait visible, carte tournée à 180°). On échange donc les faces à
+   mi-course (0,4 s sur 0,8 s : la carte est de profil, rien ne se voit). */
+.carte-int>.carte-verso{opacity:0}
+.carte-flip[aria-pressed="true"] .carte-recto{opacity:0}
+.carte-flip[aria-pressed="true"] .carte-verso{opacity:1}
+/* ⛔ spécificité PLUS FORTE que « .cartes-bloc:hover .carte-flip .carte-photo » (0,4,0) :
+   mesuré le 2026-09-25, le transform:none qui annule l'inclinaison de .carte-photo
+   écrasait aussi ce rotateY → les deux faces de dos, carte INVISIBLE. */
+.cartes-bloc .carte-flip .carte-int>.carte-verso.carte-photo{transform:rotateY(180deg)}
+.carte-flip[aria-pressed="true"] .carte-int{transform:rotateY(180deg)}
+.carte-flip:focus-visible{outline:2px solid var(--rouge,#c8102e);outline-offset:6px;border-radius:12px}
+.carte-astuce{margin-top:14px;font-size:13px;color:var(--gris-fonce);text-align:center}
+@media(prefers-reduced-motion:reduce){.carte-int{transition:none}}
 .carte-opts{display:grid;gap:18px}
 .carte-opts .rangee{display:flex;flex-direction:column;gap:8px}
 .carte-opts .et{font-size:12px;color:var(--gris-fonce)}
@@ -767,6 +789,12 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
     <p class="faces-expl" id="faces-expl-double" hidden
        data-fr="&lt;b&gt;Double face&lt;/b&gt; &lt;span class=&quot;option&quot;&gt;offert en option&lt;/span&gt; — le message se lit &lt;b&gt;à l'endroit des deux côtés&lt;/b&gt;. Pour un drapeau au bord de la route, visible des deux sens de la circulation."
        data-en="&lt;b&gt;Double-sided&lt;/b&gt; &lt;span class=&quot;option&quot;&gt;available as an option&lt;/span&gt; — the message reads &lt;b&gt;the right way from both sides&lt;/b&gt;. For a flag by the road, seen from both directions of traffic."><b>Double face</b> <span class="option">offert en option</span> — le message se lit <b>à l'endroit des deux côtés</b>. Pour un drapeau au bord de la route, visible des deux sens de la circulation.</p>
+    <!-- Le tissu (Christian, 2026-09-25 : « c'est du polyester sublimation 110 et optionnel
+         130 g glossy »). L'argument du 130 g vient de Logique_Metier_Produits § Glossy 130G :
+         trame plus serrée → l'encre reste en surface → couleurs plus vives. Aucun prix. -->
+    <p class="faces-expl faces-tissu"
+       data-fr="&lt;b&gt;Tissu&lt;/b&gt; — polyester 110 g imprimé par sublimation, inclus.&lt;br&gt;&lt;b&gt;Canvas 130 g Glossy&lt;/b&gt; &lt;span class=&quot;option&quot;&gt;offert en option&lt;/span&gt; — une trame plus serrée qui garde les couleurs plus vives."
+       data-en="&lt;b&gt;Fabric&lt;/b&gt; — 110 g dye-sublimated polyester, included.&lt;br&gt;&lt;b&gt;130 g Glossy canvas&lt;/b&gt; &lt;span class=&quot;option&quot;&gt;available as an option&lt;/span&gt; — a tighter weave that keeps colours more vivid."><b>Tissu</b> — polyester 110 g imprimé par sublimation, inclus.<br><b>Canvas 130 g Glossy</b> <span class="option">offert en option</span> — une trame plus serrée qui garde les couleurs plus vives.</p>
     <button type="button" class="faces-autre" id="faces-autre" data-fr="Voir un autre exemple ↻" data-en="See another example ↻">Voir un autre exemple ↻</button>
   </div>
 </section>
@@ -797,8 +825,20 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
          résout pas. Le montrer sur le site enverrait les visiteurs dans le vide.
          ⚠️ Le fichier s/carte-mca-verso.png reste sur le disque : il redeviendra
          bon le jour où le verso sera réimprimé avec la bonne adresse. -->
+    <!-- ✅ VERSO RÉTABLI le 2026-09-25 (go de Christian) — legroupemca.com existe.
+         Les deux lignes ont été refaites avec les VRAIS glyphes de la carte :
+         info@legroupemca.com (courriel public, décision du 2026-09-12) et
+         www.legroupemca.com. Ancien verso : Projets/Site/carte-mca-verso.2026-09-24.legroupemca-ca.png.
+         La carte pivote au clic / au toucher. -->
     <figure style="margin:0">
-      <img class="carte-photo" src="s/carte-mca.png" alt="Carte professionnelle Le Groupe MCA" loading="lazy">
+      <button class="carte-flip" type="button" aria-pressed="false"
+              data-fr-label="Retourner la carte" data-en-label="Flip the card" aria-label="Retourner la carte">
+        <span class="carte-int">
+          <img class="carte-photo carte-recto" src="s/carte-mca.png" alt="Carte professionnelle Le Groupe MCA — recto" loading="lazy">
+          <img class="carte-photo carte-verso" src="s/carte-mca-verso.png" alt="Carte professionnelle Le Groupe MCA — verso" loading="lazy">
+        </span>
+      </button>
+      <figcaption class="carte-astuce" data-fr="↻ Touchez la carte pour voir le verso" data-en="↻ Tap the card to see the back">↻ Touchez la carte pour voir le verso</figcaption>
     </figure>
     <div class="carte-opts">
       <div class="rangee">
@@ -1652,8 +1692,13 @@ const apercu = document.getElementById('apercu-gal');
 fetch('galerie.json?v=2').then(r => r.json()).then(d => {
   if (Array.isArray(d)) d = {drapeaux: {fr: 'Drapeaux', en: 'Flags', photos: d}};
   GALS = d; CAT = Object.keys(d)[0];
-  apercu.innerHTML = GAL_DE(CAT).slice(0, 3)
-    .map(p => `<img src="s/gal/${p.f}" alt="" loading="lazy" decoding="async">`).join('');
+  /* Aperçu : grande photo de drapeau + UNE carte en haut à droite (Christian, 2026-09-25 :
+     les deux premières photos de drapeaux venaient du même commerce, et l'aperçu
+     disait « on ne fait que des drapeaux »). Sans rubrique cartes : 3 drapeaux. */
+  const dr = GAL_DE(CAT), ca = GAL_DE('cartes');
+  const trio = ca.length ? [dr[0], ca[0], dr[2] || dr[1]] : dr.slice(0, 3);
+  apercu.innerHTML = trio.filter(Boolean)
+    .map(p => `<img src="s/gal/${p.f}" alt="" loading="lazy" decoding="async" data-gal="${ca.includes(p) ? 'cartes' : CAT}">`).join('');
   rendreGalerie();
   const h = location.hash.match(/^#galerie-(\w+)$/);   // lien direct : #galerie-cartes
   if (h && GALS[h[1]]) ouvrirSalle(h[1]);
@@ -1710,7 +1755,11 @@ function fermerSalle(){
   if (f) f.focus();
 }
 portes.addEventListener('click', e => { const b = e.target.closest('.porte'); if (b) ouvrirSalle(b.dataset.cat); });
-apercu.addEventListener('click', () => ouvrirSalle(Object.keys(GALS)[0]));
+/* Chaque photo de l'aperçu ouvre SA galerie : la carte → Cartes (Christian, 2026-09-25). */
+apercu.addEventListener('click', e => {
+  const g = e.target.closest('img')?.dataset.gal;
+  ouvrirSalle(GALS[g] ? g : Object.keys(GALS)[0]);
+});
 apercu.style.cursor = 'zoom-in';
 onglets.addEventListener('click', e => { const b = e.target.closest('button'); if (b) ouvrirSalle(b.dataset.cat); });
 salle.querySelector('.fermer-salle').addEventListener('click', fermerSalle);
@@ -1894,6 +1943,10 @@ addEventListener('scroll', () => {
   jauge.style.width = (h > 0 ? scrollY/h*100 : 0) + '%';
 }, {passive:true});
 
+/* La carte professionnelle pivote : recto ↔ verso (Christian, 2026-09-25). */
+document.querySelectorAll('.carte-flip').forEach(b => b.addEventListener('click', () =>
+  b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true')));
+
 /* ───────────────────────────────────────────────────────────────────────────
    6. BILINGUE — data-fr / data-en sur l'élément. Aucun fichier de traduction.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -1903,6 +1956,8 @@ bt.addEventListener('click', () => {
   bt.textContent = LANG === 'fr' ? 'EN' : 'FR';
   document.documentElement.lang = LANG;
   document.querySelectorAll('[data-fr]').forEach(el => el.innerHTML = el.dataset[LANG]);
+  document.querySelectorAll('[data-fr-label]').forEach(el =>
+    el.setAttribute('aria-label', LANG === 'fr' ? el.dataset.frLabel : el.dataset.enLabel));
   if (etat.logo) depot.querySelector('b').textContent = LANG==='fr' ? 'Logo posé ✓' : 'Logo applied ✓';
   rendreGalerie(); dessinerToile(); majRecap();
   // ⛔ la boucle [data-fr] réécrit AUSSI le bouton d'envoi : on lui rend son état

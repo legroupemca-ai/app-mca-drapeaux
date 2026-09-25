@@ -1,0 +1,26 @@
+[
+ {
+  "v": "Concave",
+  "f": "forme_concave.png",
+  "src": "decoupe_3.png",
+  "largeur": 231
+ },
+ {
+  "v": "Convexe",
+  "f": "forme_convexe.png",
+  "src": "decoupe_2.png",
+  "largeur": 221
+ },
+ {
+  "v": "Flamme",
+  "f": "forme_flamme.png",
+  "src": "decoupe_1.png",
+  "largeur": 229
+ },
+ {
+  "v": "Droit",
+  "f": "forme_droit.png",
+  "src": "decoupe_4.png",
+  "largeur": 218
+ }
+]

@@ -1,0 +1,52 @@
+[
+ {
+  "f": "toile01.png",
+  "mat": "droite",
+  "largeur": 340
+ },
+ {
+  "f": "toile02.png",
+  "mat": "droite",
+  "largeur": 267
+ },
+ {
+  "f": "toile03.png",
+  "mat": "gauche",
+  "largeur": 368
+ },
+ {
+  "f": "toile04.png",
+  "mat": "gauche",
+  "largeur": 371
+ },
+ {
+  "f": "toile05.png",
+  "mat": "gauche",
+  "largeur": 305
+ },
+ {
+  "f": "toile06.png",
+  "mat": "gauche",
+  "largeur": 308
+ },
+ {
+  "f": "toile07.png",
+  "mat": "droite",
+  "largeur": 356
+ },
+ {
+  "f": "toile08.png",
+  "mat": "gauche",
+  "largeur": 350
+ },
+ {
+  "f": "toile09.png",
+  "mat": "gauche",
+  "largeur": 271
+ },
+ {
+  "f": "toile10.png",
+  "mat": "droite",
+  "largeur": 284
+ }
+]

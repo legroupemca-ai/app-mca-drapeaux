@@ -1,0 +1,199 @@
+{
+  "drapeaux": {
+    "fr": "Drapeaux",
+    "en": "Flags",
+    "photos": [
+      {
+        "f": "g01.jpg",
+        "fr": "Drapeau bord de route",
+        "en": "Roadside flag"
+      },
+      {
+        "f": "g02.jpg",
+        "fr": "Drapeau · entrée boutique",
+        "en": "Store entrance flag"
+      },
+      {
+        "f": "g03.jpg",
+        "fr": "Drapeau couleurs Québec",
+        "en": "Quebec colors flag"
+      },
+      {
+        "f": "g04.jpg",
+        "fr": "Drapeau impression couleur",
+        "en": "Full color print flag"
+      },
+      {
+        "f": "g05.jpg",
+        "fr": "Drapeau résidentiel",
+        "en": "Residential flag"
+      },
+      {
+        "f": "g06.jpg",
+        "fr": "Uniburger · drapeau rouge",
+        "en": "Uniburger · red flag"
+      },
+      {
+        "f": "g07.jpg",
+        "fr": "Concessionnaire auto",
+        "en": "Car dealership"
+      },
+      {
+        "f": "g08.jpg",
+        "fr": "Salon de coiffure",
+        "en": "Hair salon"
+      },
+      {
+        "f": "g09.jpg",
+        "fr": "Béton provincial",
+        "en": "Concrete company"
+      },
+      {
+        "f": "g10.jpg",
+        "fr": "Drapeau plume · extérieur",
+        "en": "Feather flag · outdoor"
+      },
+      {
+        "f": "g11.jpg",
+        "fr": "Car show · drapeaux",
+        "en": "Car show · flags"
+      },
+      {
+        "f": "g12.jpg",
+        "fr": "Camion béton · drapeau",
+        "en": "Concrete truck flag"
+      },
+      {
+        "f": "g13.jpg",
+        "fr": "Liquidation · drapeau",
+        "en": "Liquidation flag"
+      },
+      {
+        "f": "g16.jpg",
+        "fr": "Tires and Wheels Sales",
+        "en": "Tires and Wheels Sales"
+      },
+      {
+        "f": "g17.jpg",
+        "fr": "Marchés publics",
+        "en": "Public markets"
+      },
+      {
+        "f": "g18.jpg",
+        "fr": "À vendre · drapeaux",
+        "en": "For sale · flags"
+      },
+      {
+        "f": "g19.jpg",
+        "fr": "Commerce · drapeau",
+        "en": "Business flag"
+      },
+      {
+        "f": "g20.jpg",
+        "fr": "Camion · drapeau bleu",
+        "en": "Truck · blue flag"
+      },
+      {
+        "f": "g22.jpg",
+        "fr": "Service événementiel et traiteur",
+        "en": "Catering & event service"
+      }
+    ]
+  },
+  "cartes": {
+    "fr": "Cartes, menus et imprimés",
+    "en": "Cards, menus and prints",
+    "photos": [
+      {
+        "f": "c12.jpg",
+        "fr": "Cartes Le Groupe MCA",
+        "en": "Le Groupe MCA business cards"
+      },
+      {
+        "f": "c02.jpg",
+        "fr": "Menus Famous Dog",
+        "en": "Famous Dog menus"
+      },
+      {
+        "f": "c03.jpg",
+        "fr": "Cartes Fringues et Vous & Filles",
+        "en": "Fringues et Vous & Filles business cards"
+      },
+      {
+        "f": "c04.jpg",
+        "fr": "Cartes Service de Pneus MG",
+        "en": "Service de Pneus MG business cards"
+      },
+      {
+        "f": "c05.jpg",
+        "fr": "Certificats-cadeaux Liquidation Lise",
+        "en": "Liquidation Lise gift certificates"
+      },
+      {
+        "f": "c06.jpg",
+        "fr": "Cartes de fidélité Touched by Luce",
+        "en": "Touched by Luce loyalty cards"
+      },
+      {
+        "f": "c07.jpg",
+        "fr": "Cartes Rachel Beauregard, coiffeuse",
+        "en": "Rachel Beauregard hairstylist business cards"
+      },
+      {
+        "f": "c08.jpg",
+        "fr": "Cartes K&Z Boutique",
+        "en": "K&Z Boutique business cards"
+      },
+      {
+        "f": "c09.jpg",
+        "fr": "Cartes rendez-vous Styliste Jade",
+        "en": "Styliste Jade appointment cards"
+      },
+      {
+        "f": "c10.jpg",
+        "fr": "Cartes Idée Propre",
+        "en": "Idée Propre business cards"
+      },
+      {
+        "f": "c11.jpg",
+        "fr": "Cartes de fidélité Jardins J&B",
+        "en": "Jardins J&B loyalty cards"
+      },
+      {
+        "f": "c13.jpg",
+        "fr": "Cartes Animo & Compagnie",
+        "en": "Animo & Compagnie business cards"
+      },
+      {
+        "f": "c14.jpg",
+        "fr": "Dépliant La Société du Pinball",
+        "en": "La Société du Pinball brochure"
+      },
+      {
+        "f": "c19.jpg",
+        "fr": "Dépliant La Société du Pinball (intérieur)",
+        "en": "La Société du Pinball brochure (inside)"
+      },
+      {
+        "f": "c17.jpg",
+        "fr": "Cordons La Société du Pinball",
+        "en": "La Société du Pinball lanyards"
+      },
+      {
+        "f": "c18.jpg",
+        "fr": "Cordon La Société du Pinball",
+        "en": "La Société du Pinball lanyard"
+      },
+      {
+        "f": "c15.jpg",
+        "fr": "Cartes PVC — passes VIP Salon du Pinball",
+        "en": "PVC cards — Salon du Pinball VIP passes"
+      },
+      {
+        "f": "c16.jpg",
+        "fr": "Affiche Salon du Pinball",
+        "en": "Salon du Pinball poster"
+      }
+    ]
+  }
+}

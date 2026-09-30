@@ -108,7 +108,8 @@ html{overflow-x:hidden}body{background:var(--blk);color:var(--wh);font-family:va
 .feat-tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a1a1a;filter:drop-shadow(0 2px 0 rgba(205,12,24,.3))}
 .feat-tooltip-title{font-size:15px;font-weight:900;color:#fff;letter-spacing:.3px;margin-bottom:12px;font-family:var(--font-dsp);padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
 .feat-tooltip-body{font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.7}.feat-tooltip-body ul{list-style:none;padding:0;margin:0}.feat-tooltip-body ul li{padding:3px 0;padding-left:16px;position:relative}.feat-tooltip-body ul li::before{content:"▸";position:absolute;left:0;color:var(--red);font-size:10px;top:5px}.feat-tooltip-body .tip-badge{display:inline-block;background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.3);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:4px;margin-top:8px;text-transform:uppercase}
-.feat:hover .feat-tooltip,.feat.open .feat-tooltip{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.feat.open .feat-tooltip{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+@media(hover:hover){.feat:hover .feat-tooltip{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}}
 
 /* CFG */
 .cfg-bg{position:relative;min-height:100%}
@@ -1816,16 +1817,24 @@ async function adminStop(){
 }
 
 /* ── Tooltips features — tap sur mobile ─────────────────────────────────── */
+/* Se ferment : en retouchant le même onglet, en touchant ailleurs, ou seules après 5 s
+   (Christian, 2026-09-30 : sur téléphone la bulle prend l'écran, il ne reste presque rien à toucher à côté). */
+let featMinuterie=null;
+function fermerFeats(){
+  clearTimeout(featMinuterie);
+  document.querySelectorAll('.feat.open').forEach(f=>{
+    f.classList.remove('open');
+    const t=f.querySelector('.feat-tooltip');
+    if(t)t.style.transform='';
+  });
+}
 document.querySelectorAll('.feat').forEach(el=>{
   el.addEventListener('click',e=>{
     const isOpen=el.classList.contains('open');
-    document.querySelectorAll('.feat.open').forEach(f=>{
-      f.classList.remove('open');
-      const t=f.querySelector('.feat-tooltip');
-      if(t)t.style.transform='';
-    });
+    fermerFeats();
     if(!isOpen){
       el.classList.add('open');
+      featMinuterie=setTimeout(fermerFeats,5000);
       // Calculer depuis la position du bouton (stable) plutôt que du tooltip (en transition)
       requestAnimationFrame(()=>{
         const t=el.querySelector('.feat-tooltip');
@@ -1841,13 +1850,7 @@ document.querySelectorAll('.feat').forEach(el=>{
     e.stopPropagation();
   });
 });
-document.addEventListener('click',()=>{
-  document.querySelectorAll('.feat.open').forEach(f=>{
-    f.classList.remove('open');
-    const t=f.querySelector('.feat-tooltip');
-    if(t)t.style.transform='';
-  });
-});
+document.addEventListener('click',fermerFeats);
 
 </script>
 

@@ -278,6 +278,12 @@ h2{font-family:var(--titre);font-variation-settings:"wdth" 108;font-size:clamp(1
 .chiffres b{display:block;font-family:var(--titre);font-variation-settings:'wdth' 115;
   font-size:clamp(2.2rem,5.4vw,4rem);font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
 .chiffres small{display:block;margin-top:10px;font-size:13.5px;color:var(--gris)}
+/* ⭐ 2026-10-10 — Christian : le compteur part de 400 (« comme si on avait vendu 100 cet été »), monte de plus en plus vite, s'arrête à 500 et
+   CLIGNOTE. Jamais au-delà de 500, jamais mis à jour par un script (Christian le change lui-même, saisons creuses) : on est à 682 drapeaux (analyse du 6 juin),
+   donc « 500+ » reste vrai — « on ne sera jamais dans l'erreur ». */
+@keyframes flash-compteur{0%,100%{opacity:1}50%{opacity:.15}}
+.chiffres b.flash{animation:flash-compteur .45s ease-in-out 3}
+@media(prefers-reduced-motion:reduce){.chiffres b.flash{animation:none}}
 
 /* ── galerie ─────────────────────────────────────────────────────────── */
 .vrai{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;font-size:13.5px;color:var(--gris)}
@@ -709,7 +715,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
        Le jour où l'un de ces chiffres change, il change ICI et dans la bio.
        ═══════════════════════════════════════════════════════════════════════ -->
   <div class="chiffres mont">
-    <div><b data-vers="400" data-suffixe="+">400+</b>
+    <div><b data-vers="500" data-depart="400" data-duree="2600" data-accelere="1" data-suffixe="+">500+</b>
       <small data-fr="drapeaux plantés au Québec" data-en="flags planted in Quebec">drapeaux plantés au Québec</small></div>
     <div><b data-vers="19">19</b>
       <small data-fr="installations photographiées ici" data-en="installs photographed here">installations photographiées ici</small></div>
@@ -1930,12 +1936,15 @@ const compteurs = new IntersectionObserver(es => es.forEach(e => {
   const b = e.target, cible = +b.dataset.vers;
   if (!cible || MOINS) return;
   const suffixe = b.dataset.suffixe || '', brut = b.dataset.brut;
-  const debut = performance.now(), duree = 900;
+  const depart = +b.dataset.depart || 0, accelere = !!b.dataset.accelere;
+  const debut = performance.now(), duree = +b.dataset.duree || 900;
   const pas = maintenant => {
     const t = Math.min(1, (maintenant - debut) / duree);
-    const v = Math.round(cible * (1 - Math.pow(1 - t, 3)));
+    // accelere : lent au début, de plus en plus vite (100, 102, 106… puis 500) ; sinon il freine.
+    const f = accelere ? Math.pow(t, 2.4) : 1 - Math.pow(1 - t, 3);
+    const v = Math.round(depart + (cible - depart) * f);
     b.textContent = (brut ? String(v) : v.toLocaleString('fr-CA')) + suffixe;
-    if (t < 1) requestAnimationFrame(pas);
+    if (t < 1) requestAnimationFrame(pas); else if (accelere) b.classList.add('flash');
   };
   requestAnimationFrame(pas);
 }), {threshold: 0.6});

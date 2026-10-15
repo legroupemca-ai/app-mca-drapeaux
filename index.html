@@ -564,7 +564,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
          aria-label="Voir la promo du moment sur notre page Facebook">
         <span class="point" aria-hidden="true"></span>
         <span data-fr="Promo&lt;span class=&quot;long&quot;&gt; du moment&lt;/span&gt;" data-en="&lt;span class=&quot;long&quot;&gt;Current &lt;/span&gt;Deal">Promo<span class="long"> du moment</span></span></a>
-      <a class="btn-app gard" href="app.html"><img src="s/app-icon-192.png" alt="" width="28" height="28">
+      <a class="btn-app gard" href="app.html"><img loading="lazy" src="s/app-icon-192.png" alt="" width="28" height="28">
         <span data-fr="Ouvrir l'app" data-en="Open the app">Ouvrir l'app</span></a>
     </nav>
   </div>
@@ -576,7 +576,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
      C'est l'argument #02 de MCA rendu littéral : « une maquette avant de payer ».
      ═══════════════════════════════════════════════════════════════════════ -->
 <div class="hero">
-  <div class="fond"><img src="s/gal/g11.jpg" alt="" fetchpriority="high"></div>
+  <div class="fond"><img loading="lazy" src="s/gal/g11.jpg" alt="" fetchpriority="high"></div>
 
   <div class="hero-in">
     <div>
@@ -931,7 +931,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
       <p class="note" style="margin-top:16px" data-fr="Sur iPhone : Partager → « Sur l'écran d'accueil ». Sur Android : menu ⋮ → « Installer l'application »."
          data-en="On iPhone: Share → “Add to Home Screen”. On Android: menu ⋮ → “Install app”.">Sur iPhone : Partager → « Sur l'écran d'accueil ». Sur Android : menu ⋮ → « Installer l'application ».</p>
     </div>
-    <div class="visuel"><img class="ic" src="s/app-icon.png" alt="Application MCA Drapeaux"></div>
+    <div class="visuel"><img loading="lazy" class="ic" src="s/app-icon.png" alt="Application MCA Drapeaux"></div>
   </div>
 </section>
 
@@ -954,7 +954,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
   <h2 class="mont" data-fr="Qui nous sommes" data-en="Who we are">Qui nous sommes</h2>
   <div class="nous mont">
     <div class="gauche">
-      <img class="ic" src="s/logo-mca-blanc.png" alt="Le Groupe MCA">
+      <img loading="lazy" class="ic" src="s/logo-mca-blanc.png" alt="Le Groupe MCA">
       <h3 data-fr="Christian Therrien" data-en="Christian Therrien">Christian Therrien</h3>
       <span class="role">Châteauguay, Québec</span>
     </div>
@@ -1067,7 +1067,7 @@ footer{border-top:1px solid var(--ligne);margin-top:40px}
 <div id="loupe" role="dialog" aria-modal="true" aria-label="Photo agrandie">
   <button class="fermer" type="button" aria-label="Fermer">✕</button>
   <button class="fleche prec" type="button" aria-label="Précédente">‹</button>
-  <figure><img alt=""><figcaption></figcaption></figure>
+  <figure><img loading="lazy" alt=""><figcaption></figcaption></figure>
   <button class="fleche suiv" type="button" aria-label="Suivante">›</button>
   <div class="compte"></div>
 </div>
@@ -1576,7 +1576,7 @@ if (gl){
 function secours(){
   /* Aucun WebGL : on montre le produit réel plutôt qu'un trou. */
   const s = document.querySelector('.scene');
-  s.innerHTML = '<img src="s/beach_exemple.png" alt="Beach flag MCA" style="height:100%;object-fit:contain">';
+  s.innerHTML = '<img loading="lazy" src="s/beach_exemple.png" alt="Beach flag MCA" style="height:100%;object-fit:contain">';
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -1725,7 +1725,7 @@ function rendreGalerie(){
   gal.querySelectorAll('figure').forEach(f => oeil.unobserve(f));
   const cats = Object.keys(GALS).filter(c => GAL_DE(c).length);
   portes.innerHTML = cats.map(c =>
-    `<button class="porte" type="button" data-cat="${c}"><img src="s/gal/${GAL_DE(c)[0].f}" alt="">
+    `<button class="porte" type="button" data-cat="${c}"><img loading="lazy" src="s/gal/${GAL_DE(c)[0].f}" alt="">
        <span><b>${LANG === 'fr' ? 'Galerie' : 'Gallery'} · ${GALS[c][LANG]}</b><small>${compte(GAL_DE(c).length)}</small></span></button>`).join('');
   onglets.innerHTML = cats.map(c =>
     `<button type="button" role="tab" data-cat="${c}" aria-selected="${c === CAT}">${GALS[c][LANG]}<span>${GAL_DE(c).length}</span></button>`).join('');

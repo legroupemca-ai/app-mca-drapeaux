@@ -529,6 +529,12 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 .payer-boite{display:flex;flex-wrap:wrap;align-items:center;gap:16px;max-width:760px}
 .payer-boite .note{flex-basis:100%;margin:0}
 .cartes-ok{display:inline-flex;gap:8px}
+.interac summary{list-style:none;cursor:pointer}
+.interac summary::-webkit-details-marker{display:none}
+.interac-boite{margin-top:12px;padding:14px 16px;border:1px solid rgba(0,0,0,.12);border-radius:12px;background:#fff;max-width:420px}
+.interac-boite p{margin:0 0 6px}
+.interac-adr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.copier{border:1px solid var(--rouge);background:none;color:var(--rouge);border-radius:999px;padding:4px 12px;cursor:pointer;font:inherit;font-size:13px}
 .cartes-ok svg{display:block;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.25)}
 </style>
 </head>
@@ -964,16 +970,19 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 <section id="payer">
   <div class="trait"></div>
   <h2 class="mont" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</h2>
-  <p class="intro mont" data-fr="Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit, en ligne, en une minute."
-     data-en="Got your invoice? Pay your deposit or balance by credit card, online, in one minute.">Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit, en ligne, en une minute.</p>
+  <p class="intro mont" data-fr="Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit ou par virement Interac."
+     data-en="Got your invoice? Pay your deposit or balance by credit card or Interac e-Transfer.">Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit ou par virement Interac.</p>
   <div class="payer-boite form metal biseau mont">
     <span class="cartes-ok" role="img" aria-label="Visa et Mastercard acceptées">
       <svg viewBox="0 0 64 40" width="56" height="35" aria-hidden="true"><rect width="64" height="40" rx="6" fill="#fff"/><text x="32" y="27" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="900" font-style="italic" fill="#1A1F71">VISA</text></svg>
       <svg viewBox="0 0 64 40" width="56" height="35" aria-hidden="true"><rect width="64" height="40" rx="6" fill="#fff"/><circle cx="26" cy="20" r="11" fill="#EB001B"/><circle cx="38" cy="20" r="11" fill="#F79E1B"/><path d="M32 11.4a11 11 0 0 1 0 17.2a11 11 0 0 1 0-17.2z" fill="#FF5F00"/></svg>
     </span>
-    <a class="cta" href="https://buy.stripe.com/bJe6oGevlgOydaxcx78Vi00" target="_blank" rel="noopener" data-fr="Payer par carte" data-en="Pay by card">Payer par carte</a>
-    <p class="note" data-fr="Inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte. Le virement Interac à info@legroupemca.com reste accepté, au même prix."
-       data-en="Enter the amount and your invoice number. Secure payment by Stripe: we never see your card number. Interac e-Transfer to info@legroupemca.com is still accepted, at the same price.">Inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte. Le virement Interac à info@legroupemca.com reste accepté, au même prix.</p>
+    <a class="cta" href="https://buy.stripe.com/bJe6oGevlgOydaxcx78Vi00" target="_blank" rel="noopener" data-fr="💳 Carte de crédit" data-en="💳 Credit card">💳 Carte de crédit</a>
+    <details class="interac"><summary class="cta ghost" data-fr="Virement Interac" data-en="Interac e-Transfer">Virement Interac</summary>
+      <div class="interac-boite"><p data-fr="Dans votre banque, envoyez le virement à :" data-en="In your bank, send the transfer to:">Dans votre banque, envoyez le virement à :</p>
+      <p class="interac-adr"><b id="adr-interac">info@legroupemca.com</b> <button type="button" class="copier" onclick="navigator.clipboard&&navigator.clipboard.writeText('info@legroupemca.com');this.textContent='✓ Copié'" data-fr="Copier" data-en="Copy">Copier</button></p>
+      <p data-fr="Inscrivez le numéro de votre facture dans le message. Même prix que par carte." data-en="Write your invoice number in the message. Same price as by card.">Inscrivez le numéro de votre facture dans le message. Même prix que par carte.</p></div></details>
+    <p class="note" data-fr="Carte : inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte." data-en="Card: enter the amount and your invoice number. Secure payment by Stripe: we never see your card number.">Carte : inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte.</p>
   </div>
 </section>
 

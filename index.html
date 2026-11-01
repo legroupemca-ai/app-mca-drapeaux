@@ -121,6 +121,11 @@ nav a:hover{color:var(--blanc)}
 .btn-promo:hover .point{background:#fff}
 @keyframes pouls{0%{box-shadow:0 0 0 0 rgba(229,32,44,.6)}70%{box-shadow:0 0 0 8px rgba(229,32,44,0)}100%{box-shadow:0 0 0 0 rgba(229,32,44,0)}}
 @media (prefers-reduced-motion:reduce){.btn-promo .point{animation:none}}
+nav a,.btn-promo,.btn-app{white-space:nowrap}
+.btn-promo,.btn-app,.lang{flex-shrink:0}
+nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social){position:relative}
+nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{content:"";position:absolute;right:-12px;top:50%;width:2px;height:1.35em;transform:translateY(-50%);background:var(--rouge);border-radius:1px}
+@media(max-width:1500px){nav{gap:14px} .bar{gap:10px} nav a.nav-secondaire{display:none} nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{right:-8px}}
 @media(max-width:980px){nav a:not(.gard):not(.btn-app){display:none} .bar b{display:none}}
 @media(max-width:520px){.social{display:none} nav{gap:10px} .btn-app span{display:none} .btn-app{padding:0 5px}
   .btn-promo{padding:0 11px;font-size:12.5px} .btn-promo .long{display:none}}
@@ -519,6 +524,12 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
   #atelier .atelier-btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.tuile{transition:none}.tuile:hover{transform:none}}
+#soumission{padding-bottom:32px}
+#payer{padding-top:32px}
+.payer-boite{display:flex;flex-wrap:wrap;align-items:center;gap:16px;max-width:760px}
+.payer-boite .note{flex-basis:100%;margin:0}
+.cartes-ok{display:inline-flex;gap:8px}
+.cartes-ok svg{display:block;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
@@ -535,7 +546,7 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
       <a href="#cartes" data-fr="Cartes" data-en="Cards">Cartes</a>
       <a href="#nous" data-fr="Qui nous sommes" data-en="Who we are">Qui nous sommes</a>
       <a href="#app" data-fr="L'app" data-en="The app">L'app</a>
-            <a href="confidentialite.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
+            <a class="nav-secondaire" href="confidentialite.html" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a>
       <a class="gard" href="#soumission" data-fr="Soumission" data-en="Quote">Soumission</a>
             <a class="social" href="https://www.facebook.com/MCAdrapeau/" target="_blank" rel="noopener"
          aria-label="Le Groupe MCA sur Facebook" title="Le Groupe MCA sur Facebook">
@@ -559,12 +570,13 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
           <circle cx="26.6" cy="13.4" r="1.6" fill="#fff"/>
         </svg></a>
       <button class="lang gard" id="lang" type="button">EN</button>
+      <a class="btn-promo gard" href="#payer" aria-label="Payer ma facture par carte"><span data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</span></a>
                   <a class="btn-promo gard" href="https://www.facebook.com/MCAdrapeau/" target="_blank" rel="noopener"
          aria-label="Voir la promo du moment sur notre page Facebook">
         <span class="point" aria-hidden="true"></span>
         <span data-fr="Promo&lt;span class=&quot;long&quot;&gt; du moment&lt;/span&gt;" data-en="&lt;span class=&quot;long&quot;&gt;Current &lt;/span&gt;Deal">Promo<span class="long"> du moment</span></span></a>
       <a class="btn-app gard" href="app.html" aria-label="Ouvrir l'application MCA"><img loading="lazy" src="s/app-icon-192.png" alt="" width="28" height="28" fetchpriority="low">
-        <span data-fr="Ouvrir l'app" data-en="Open the app">Ouvrir l'app</span></a>
+        <span data-fr="Ouvrir l'APP" data-en="Open the APP">Ouvrir l'APP</span></a>
     </nav>
   </div>
 </header>
@@ -949,6 +961,22 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
   </form>
 </section>
 
+<section id="payer">
+  <div class="trait"></div>
+  <h2 class="mont" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</h2>
+  <p class="intro mont" data-fr="Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit, en ligne, en une minute."
+     data-en="Got your invoice? Pay your deposit or balance by credit card, online, in one minute.">Vous avez reçu votre facture ? Payez votre dépôt ou votre solde par carte de crédit, en ligne, en une minute.</p>
+  <div class="payer-boite form metal biseau mont">
+    <span class="cartes-ok" role="img" aria-label="Visa et Mastercard acceptées">
+      <svg viewBox="0 0 64 40" width="56" height="35" aria-hidden="true"><rect width="64" height="40" rx="6" fill="#fff"/><text x="32" y="27" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="900" font-style="italic" fill="#1A1F71">VISA</text></svg>
+      <svg viewBox="0 0 64 40" width="56" height="35" aria-hidden="true"><rect width="64" height="40" rx="6" fill="#fff"/><circle cx="26" cy="20" r="11" fill="#EB001B"/><circle cx="38" cy="20" r="11" fill="#F79E1B"/><path d="M32 11.4a11 11 0 0 1 0 17.2a11 11 0 0 1 0-17.2z" fill="#FF5F00"/></svg>
+    </span>
+    <a class="cta" href="https://buy.stripe.com/bJe6oGevlgOydaxcx78Vi00" target="_blank" rel="noopener" data-fr="Payer par carte" data-en="Pay by card">Payer par carte</a>
+    <p class="note" data-fr="Inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte. Le virement Interac à info@legroupemca.com reste accepté, au même prix."
+       data-en="Enter the amount and your invoice number. Secure payment by Stripe: we never see your card number. Interac e-Transfer to info@legroupemca.com is still accepted, at the same price.">Inscrivez le montant et le numéro de votre facture. Paiement sécurisé par Stripe : nous ne voyons jamais votre numéro de carte. Le virement Interac à info@legroupemca.com reste accepté, au même prix.</p>
+  </div>
+</section>
+
 </main>
 
 <footer id="contact">
@@ -962,6 +990,7 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
       <p><a href="#realisations" data-fr="Réalisations" data-en="Our work">Réalisations</a><br>
          <a href="#app" data-fr="L'application" data-en="The app">L'application</a><br>
          <a href="#soumission" data-fr="Soumission" data-en="Quote">Soumission</a><br>
+         <a href="#payer" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</a><br>
          <a href="confidentialite.html" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a><br>
          <a href="conditions.html" data-fr="Conditions de vente" data-en="Terms of sale">Conditions de vente</a></p></div>
   </div>

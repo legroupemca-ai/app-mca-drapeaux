@@ -495,13 +495,17 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 .hero{padding-bottom:clamp(36px,5vw,64px)}
 .hero .sous{margin-top:14px}
 .hero-in>div:first-child{align-self:start;padding-top:clamp(8px,2vw,28px)}
-.qr-bloc{display:flex;align-items:center;gap:16px;margin-top:34px;max-width:26em;padding:12px 18px 12px 12px;
-  border-radius:18px;background:rgba(255,255,255,.75);border:1px solid var(--ligne-2);text-decoration:none;color:var(--blanc);
+.qr-bloc{margin-top:34px;max-width:26em;padding:12px 18px 12px 12px;border-radius:18px;
+  background:rgba(255,255,255,.85);border:1px solid var(--ligne-2);color:var(--blanc);
   font-size:clamp(1rem,1.4vw,1.12rem);line-height:1.3}
+.qr-tete{display:flex;align-items:center;gap:16px}
 .qr-bloc img{width:112px;height:112px;flex:none;border-radius:8px;background:#fff}
 .qr-bloc b{color:var(--rouge-vif)}
+.qr-bloc ul{margin:14px 0 0 6px;padding-left:18px;font-size:.95em;line-height:1.45;color:#3a3a42}
+.qr-bloc li+li{margin-top:6px}
+.qr-bloc .cta{margin:14px 0 4px 6px;height:44px}
 @media(max-width:900px){.hero-in>div:first-child{padding-top:0}}
-@media(max-width:600px){.qr-bloc{margin-top:16px;gap:12px;padding:10px 14px 10px 10px}.qr-bloc img{width:84px;height:84px}}
+@media(max-width:600px){.qr-bloc{margin-top:16px;padding:10px 14px 10px 10px}.qr-tete{gap:12px}.qr-bloc img{width:84px;height:84px}}
 .tuiles{display:grid;grid-template-columns:1fr 1.45fr;grid-template-rows:1fr 1fr;gap:12px;
   height:clamp(400px,76svh,720px);min-height:0}
 .tuile{position:relative;display:block;overflow:hidden;border-radius:22px;text-decoration:none;color:var(--blanc);
@@ -608,10 +612,18 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
         <a class="cta" href="#soumission" data-fr="Obtenir mon prix" data-en="Get my price">Obtenir mon prix</a>
         <a class="cta ghost" href="#realisations" data-fr="Voir 19 installations" data-en="See 19 installs">Voir 19 installations</a>
       </div>
-      <a class="qr-bloc" href="#soumission">
-        <img src="s/hero/qr-mca.webp" alt="Code QR du Groupe MCA" width="360" height="360" loading="lazy" decoding="async">
-        <span data-fr="Faites fabriquer votre <b>code QR personnalisé</b>" data-en="Have your <b>custom QR code</b> made">Faites fabriquer votre <b>code QR personnalisé</b></span>
-      </a>
+      <div class="qr-bloc">
+        <div class="qr-tete">
+          <img src="s/hero/qr-mca.webp" alt="Code QR du Groupe MCA" width="360" height="360" loading="lazy" decoding="async">
+          <span data-fr="Faites fabriquer votre <b>code QR personnalisé</b>" data-en="Have your <b>custom QR code</b> made">Faites fabriquer votre <b>code QR personnalisé</b></span>
+        </div>
+        <ul>
+          <li data-fr="Créé chez nous : vos coordonnées sont dans le code, rien ne passe par un site." data-en="Made in-house: your details are inside the code, nothing goes through a website.">Créé chez nous : vos coordonnées sont dans le code, rien ne passe par un site.</li>
+          <li data-fr="<b>Aucun abonnement mensuel</b> : il ne meurt jamais." data-en="<b>No monthly subscription</b>: it never dies."><b>Aucun abonnement mensuel</b> : il ne meurt jamais.</li>
+          <li data-fr="Votre logo au centre, si vous le voulez." data-en="Your logo in the center, if you wish.">Votre logo au centre, si vous le voulez.</li>
+        </ul>
+        <a class="cta" href="#soumission" data-fr="Demander mon code QR" data-en="Request my QR code">Demander mon code QR</a>
+      </div>
     </div>
 
         <div class="tuiles">

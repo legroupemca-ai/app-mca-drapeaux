@@ -391,6 +391,7 @@ window.addEventListener('load',function(){
       <a href="mailto:info@legroupemca.com">info@legroupemca.com</a>
     </div>
     <button class="btn-install" id="btnInstall" onclick="instModal(true)">📲 <span data-t="install_btn">Installer l'app</span></button>
+    <button class="btn-install btn-notif" id="btnNotif" onclick="activerNotifs()" style="display:none">🔔 <span id="btnNotifTxt" data-t="notif_btn">Recevoir les notifications</span></button>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('fr')">FR</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
@@ -852,7 +853,7 @@ fr:{
   b_cross:"Croix",b_cross_s:"Surface dure · béton / pavé",b_plate:"Plaque de sol",b_plate_s:"Surface dure · montage permanent",b_spike:"Piquet à pelouse",b_spike_s:"Gazon · sol meuble",
   lbl_name:"Votre nom complet",lbl_commerce:"Nom du commerce",lbl_email:"Votre adresse courriel",lbl_phone:"Téléphone",lbl_addr:"Adresse de livraison",lbl_ville:"Ville",lbl_zip:"Code postal",lbl_note:"Autre demande ou commentaire",lbl_note_ph:"Ex. : logo à envoyer, délai souhaité, question sur la toile…",
   gal_title:"📸 Galerie clients",gal_sub:"Des exemples réels de drapeaux installés chez nos clients.",tab_gal:"📸 Galerie",
-    install_btn:"Installer l\'app",install_title:"📲 Installer l\'app sur ton téléphone",install_sub:"Gratuit · Accès rapide · Fonctionne hors ligne",
+    install_btn:"Installer l\'app",notif_btn:"Recevoir les notifications",install_title:"📲 Installer l\'app sur ton téléphone",install_sub:"Gratuit · Accès rapide · Fonctionne hors ligne",
     and_s1:"Appuie sur les <strong style=\"color:#CD0C18\">⋮ 3 petits points</strong> en haut à droite",and_s1s:"Dans Chrome — en haut à droite de ton écran",
     and_s2:"Appuie sur <strong style=\"color:#CD0C18\">\"Installer et créer un raccourci\"</strong> (ou « Ajouter à l\'écran d\'accueil »)",and_s2s:"Dans le menu qui s\'ouvre",
     and_s3:"Appuie sur <strong style=\"color:#CD0C18\">\"Installer\"</strong>",and_s3s:"L\'icône MCA apparaît sur ton écran d\'accueil ✅",
@@ -925,7 +926,7 @@ en:{
   b_cross:"Cross base",b_cross_s:"Hard surface · indoors",b_plate:"Floor plate",b_plate_s:"Hard floor · permanent mount",b_spike:"Ground spike",b_spike_s:"Lawn · soft ground",
   lbl_name:"Your full name",lbl_commerce:"Business name",lbl_email:"Your email address",lbl_phone:"Phone number",lbl_addr:"Delivery address",lbl_ville:"City",lbl_zip:"Postal code",lbl_note:"Additional request or comment",lbl_note_ph:"E.g.: logo to send, desired timeline, question about the fabric…",
   gal_title:"📸 Client gallery",gal_sub:"Real examples of flags installed at our clients.",tab_gal:"📸 Gallery",
-  install_btn:"Install app",install_title:"📲 Install the app on your phone",install_sub:"Free · Quick access · Works offline",
+  install_btn:"Install app",notif_btn:"Get notifications",install_title:"📲 Install the app on your phone",install_sub:"Free · Quick access · Works offline",
     and_s1:"Tap the <strong style=\"color:#CD0C18\">⋮ 3 dots</strong> at the top right",and_s1s:"In Chrome — top right corner of your screen",
     and_s2:"Tap <strong style=\"color:#CD0C18\">\"Install app\"</strong> (or “Add to home screen”)",and_s2s:"In the menu that opens",
     and_s3:"Tap <strong style=\"color:#CD0C18\">\"Install\"</strong>",and_s3s:"The MCA icon appears on your home screen ✅",
@@ -1568,7 +1569,7 @@ const db = firebase.firestore();
 let _swReg=null;
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./firebase-messaging-sw.js')
-    .then(reg=>{_swReg=reg;if(Notification.permission==='granted')setTimeout(initPush,3000);})
+    .then(reg=>{_swReg=reg;if(Notification.permission==='granted')setTimeout(()=>initPush().then(majBtnNotif),3000);else majBtnNotif();})
     .catch(e=>console.warn('SW:',e));
 }
 
@@ -1584,17 +1585,31 @@ function urlBase64ToUint8Array(b64){
 }
 
 function _pushLog(msg,err){console.warn('Push:',msg,err||'');}
+async function activerNotifs(){
+  const b=document.getElementById('btnNotif'),t=document.getElementById('btnNotifTxt');
+  if(!('Notification' in window)||!('serviceWorker' in navigator)){t.textContent='Non offert sur cet appareil';return;}
+  t.textContent='…';
+  const r=await initPush();
+  if(r==='ok'){t.textContent='Notifications activées ✓';setTimeout(()=>{b.style.display='none';},2500);}
+  else{t.textContent='⚠️ '+String(r).slice(0,60);}
+}
+async function majBtnNotif(){
+  const b=document.getElementById('btnNotif');if(!b)return;
+  if(!('Notification' in window)||!('serviceWorker' in navigator)||!('PushManager' in window))return;
+  let inscrit=false;
+  try{inscrit=Notification.permission==='granted'&&_swReg&&!!(await _swReg.pushManager.getSubscription())&&localStorage.getItem('mcaNotif')==='1';}catch(e){}
+  b.style.display=inscrit?'none':'flex';
+}
 async function initPush(){
-  if(!_swReg){_pushLog('SW non prêt');return;}
-  if(Notification.permission==='denied'){_pushLog('Notifications refusées');return;}
+  if(!_swReg){_pushLog('SW non prêt');return 'service non prêt';}
+  if(Notification.permission==='denied'){_pushLog('Notifications refusées');return 'refusées dans le téléphone';}
   try{
     const perm=await Notification.requestPermission();
-    if(perm!=='granted'){_pushLog('Permission refusée : '+perm);return;}
+    if(perm!=='granted'){_pushLog('Permission refusée : '+perm);return 'permission '+perm;}
     _pushLog('Permission OK — vérification ancien abonnement…');
     const existing=await _swReg.pushManager.getSubscription();
-    if(existing){_pushLog('Désabonnement ancien…');await existing.unsubscribe();}
     _pushLog('Abonnement Web Push…');
-    const sub=await _swReg.pushManager.subscribe({
+    const sub=existing||await _swReg.pushManager.subscribe({
       userVisibleOnly:true,
       applicationServerKey:urlBase64ToUint8Array(VAPID_KEY)
     });
@@ -1607,7 +1622,9 @@ async function initPush(){
       {merge:true}
     );
     _pushLog('✅ Abonnement sauvegardé dans Firestore');
-  }catch(e){_pushLog('❌ Erreur',e);}
+    try{localStorage.setItem('mcaNotif','1');}catch(e){}
+    return 'ok';
+  }catch(e){_pushLog('❌ Erreur',e);return (e&&e.message)||String(e);}
 }
 
 let _ctdwn=null;
@@ -1621,7 +1638,9 @@ db.collection('config').doc('flashSale').onSnapshot(snap=>{
   document.getElementById('flashBadge').textContent=d.badge||'🔥 Vente éclair';
   document.getElementById('flashTitle').textContent=d.title||'Offre limitée';
   document.getElementById('flashBanner').style.display='flex';
-  document.querySelector('.sticky-top-bar').style.top='48px';
+  const _hb=document.getElementById('flashBanner').offsetHeight||48;
+  document.body.style.paddingTop=_hb+'px';
+  document.querySelector('.sticky-top-bar').style.top=_hb+'px';
   if(_ctdwn)clearInterval(_ctdwn);
   _ctdwn=setInterval(()=>{
     const r=end-new Date();
@@ -1633,6 +1652,7 @@ db.collection('config').doc('flashSale').onSnapshot(snap=>{
 
 function fmtCtd(ms){
   const s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sc=s%60;
+  if(h>=24)return`${Math.floor(h/24)} j ${h%24} h`;
   if(h>0)return`${h}h ${String(m).padStart(2,'0')}m ${String(sc).padStart(2,'0')}s`;
   if(m>0)return`${String(m).padStart(2,'0')}m ${String(sc).padStart(2,'0')}s`;
   return`${sc}s`;
@@ -1640,6 +1660,7 @@ function fmtCtd(ms){
 
 function hideFlash(){
   document.getElementById('flashBanner').style.display='none';
+  document.body.style.paddingTop='';
   document.querySelector('.sticky-top-bar').style.top='';
   if(_ctdwn){clearInterval(_ctdwn);_ctdwn=null;}
 }

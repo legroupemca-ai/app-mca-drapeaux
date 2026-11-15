@@ -7,8 +7,8 @@ window.wp=function(s){try{if(wp.ok===undefined)wp.ok=document.createElement("can
 try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("mca_intro")){sessionStorage.setItem("mca_intro","1");document.documentElement.setAttribute("data-intro","1")}}catch(e){}
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Le Groupe MCA — Drapeaux publicitaires et cartes professionnelles | Châteauguay</title>
-<meta name="description" content="Votre logo, votre marque, debout dans le vent : drapeaux beach et rectangulaires, cartes d'affaires et cartes postales. Fichier vérifié gratuitement. Le Groupe MCA.">
+<title data-fait="idx_titre">Drapeaux publicitaires et cartes d'affaires au Québec | Le Groupe MCA, Châteauguay</title>
+<meta name="description" data-fait="idx_desc" content="Drapeaux publicitaires personnalisés (beach flags et rectangulaires), cartes d'affaires et cartes postales. Fichier vérifié gratuitement. Le Groupe MCA, Châteauguay.">
 <link rel="canonical" href="https://legroupemca.com/">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="s/logo-chrome-barre.png">
@@ -29,8 +29,8 @@ try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.
 </script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://legroupemca.com/">
-<meta property="og:title" content="Le Groupe MCA — Drapeaux publicitaires et cartes professionnelles">
-<meta property="og:description" content="Votre logo, votre marque, debout dans le vent.">
+<meta property="og:title" data-fait="idx_og_titre" content="Drapeaux publicitaires et cartes d'affaires au Québec | Le Groupe MCA">
+<meta property="og:description" data-fait="idx_og_desc" content="Votre logo, votre marque, debout dans le vent.">
 <meta property="og:image" content="https://legroupemca.com/s/logo-chrome.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Le Groupe MCA",
@@ -148,6 +148,8 @@ nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{content:"";
 h1{font-family:var(--titre);font-variation-settings:'wdth' 112;font-size:clamp(2.2rem,4.3vw,3.7rem);
    line-height:.93;letter-spacing:-.035em;font-weight:900;text-transform:uppercase}
 h1 em{font-style:normal;color:var(--rouge-vif)}
+.h1-mot{display:block;font-size:.42em;letter-spacing:.02em;line-height:1.2;margin-bottom:.5em;color:var(--rouge-lisible)}
+.h1-sous{margin-top:18px;max-width:30em;color:var(--gris);font-size:1.05rem}
 .nw{white-space:nowrap}
 .sous{margin-top:22px;font-size:clamp(1rem,1.5vw,1.16rem);max-width:30em;color:#3a3a42;line-height:1.55}
 
@@ -606,8 +608,9 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
   <div class="hero-in">
     <div>
       <span class="badge" data-fr="Vérification gratuite de votre fichier" data-en="Free file check">Vérification gratuite de votre fichier</span>
-      <h1 data-fr="Votre logo,<br>votre marque,<br>debout<br><em>dans le vent</em>."
-          data-en="Your logo,<br>your brand,<br>standing<br><em>in the wind</em>.">Votre logo,<br>votre marque,<br>debout<br><em>dans le vent</em>.</h1>
+      <h1 data-fr="&lt;span class=&quot;h1-mot&quot;&gt;Drapeaux publicitaires&lt;/span&gt;&lt;br&gt;Votre logo,&lt;br&gt;votre marque,&lt;br&gt;debout&lt;br&gt;&lt;em&gt;dans le vent&lt;/em&gt;."
+          data-en="&lt;span class=&quot;h1-mot&quot;&gt;Advertising flags&lt;/span&gt;&lt;br&gt;Your logo,&lt;br&gt;your brand,&lt;br&gt;standing&lt;br&gt;&lt;em&gt;in the wind&lt;/em&gt;."><span class="h1-mot">Drapeaux publicitaires</span><br>Votre logo,<br>votre marque,<br>debout<br><em>dans le vent</em>.</h1>
+      <p class="h1-sous" data-fr="Drapeaux publicitaires (beach flags et rectangulaires), cartes d'affaires et codes QR personnalisés, pour les commerces du Québec." data-en="Advertising flags (feather and rectangular), business cards and custom QR codes, for Quebec businesses.">Drapeaux publicitaires (beach flags et rectangulaires), cartes d'affaires et codes QR personnalisés, pour les commerces du Québec.</p>
       <div>
         <a class="cta" href="#soumission" data-fr="Obtenir mon prix" data-en="Get my price">Obtenir mon prix</a>
         <a class="cta ghost" href="#realisations" data-fr="Voir 19 installations" data-en="See 19 installs">Voir 19 installations</a>
@@ -639,7 +642,7 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
         </span>
         <span class="etiq" data-fr="Drapeaux" data-en="Flags">Drapeaux</span>
       </a>
-      <a class="tuile t-aff" href="#cartes">
+      <a class="tuile t-aff" href="cartes-d-affaires.html">
         <img src="s/hero/cartes-affaires.webp" alt="" width="800" height="684" loading="lazy" fetchpriority="low" decoding="async">
         <span class="etiq" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</span>
       </a>
@@ -689,7 +692,7 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 
     <div class="chiffres mont">
     <div><b data-vers="500" data-depart="400" data-duree="2600" data-accelere="1" data-suffixe="+">500+</b>
-      <small data-fr="drapeaux plantés au Québec" data-en="flags planted in Quebec">drapeaux plantés au Québec</small></div>
+      <small data-fr="drapeaux livrés" data-en="flags delivered">drapeaux livrés</small></div>
     <div><b data-vers="19">19</b>
       <small data-fr="installations photographiées ici" data-en="installs photographed here">installations photographiées ici</small></div>
     <div><b data-fr="Gratuite" data-en="Free">Gratuite</b>
@@ -706,22 +709,23 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
   <h2 class="mont" data-fr="Produits" data-en="Products">Produits</h2>
   <p class="intro mont" data-fr="Le drapeau est le métier. La base se choisit selon la surface où il se plante."
      data-en="Flags are the craft. The base is chosen for the surface it plants into.">Le drapeau est le métier. La base se choisit selon la surface où il se plante.</p>
+    <p class="intro mont" style="margin-top:-24px"><a href="drapeau-publicitaire.html" data-fr="Tout savoir sur nos drapeaux publicitaires →" data-en="Everything about our advertising flags →">Tout savoir sur nos drapeaux publicitaires →</a></p>
     <div class="mosaique">
     <div class="prod mont"><picture><source type="image/webp" srcset="s/beach_exemple.webp"><img src="s/beach_exemple.png" alt="Beach flags Ouvert à l'année plantés au bord de la route" loading="lazy" fetchpriority="low"></picture>
       <div class="txt">
-      <h3>Beach flag</h3>
-      <p data-fr="Forme effilée sur pôle courbé — c'est lui qui bouge. 1 m · 2,5 m · 3,5 m · 4,5 m. Découpe droite ou convexe."
-         data-en="Feather shape on a curved pole — this is the one that moves. 1 m · 2.5 m · 3.5 m · 4.5 m. Straight or convex cut.">Forme effilée sur pôle courbé — c'est lui qui bouge. 1 m · 2,5 m · 3,5 m · 4,5 m. Découpe droite ou convexe.</p></div></div>
+      <h3><a href="beach-flag.html" style="color:inherit;text-decoration:none">Beach flag</a></h3>
+      <p data-fait="beach_desc" data-fr="Forme effilée sur pôle courbé — c'est lui qui bouge. Beach flags de 2,5 m à 5,5 m. Quatre découpes au choix : concave, convexe, flamme ou droite."
+         data-en="Feather shape on a curved pole — this is the one that moves. Beach flags from 2.5 m to 5.5 m. Four cuts to choose from: concave, convex, flame or straight.">Forme effilée sur pôle courbé — c'est lui qui bouge. Beach flags de 2,5 m à 5,5 m. Quatre découpes au choix : concave, convexe, flamme ou droite.</p></div></div>
     <div class="prod mont"><picture><source type="image/webp" srcset="s/rect_exemple.webp"><img src="s/rect_exemple.jpg" alt="Drapeau rectangulaire vertical d'un salon de coiffure" loading="lazy"></picture>
       <div class="txt">
-      <h3 data-fr="Rectangulaire" data-en="Rectangular">Rectangulaire</h3>
-      <p data-fr="Tissu plat, horizontal ou vertical. Sur pôle ou en bannière murale — intérieur comme extérieur."
-         data-en="Flat fabric, horizontal or vertical. On a pole or as a wall banner — indoor or outdoor.">Tissu plat, horizontal ou vertical. Sur pôle ou en bannière murale — intérieur comme extérieur.</p></div></div>
+      <h3><a href="drapeau-publicitaire.html" style="color:inherit;text-decoration:none" data-fr="Rectangulaire" data-en="Rectangular">Rectangulaire</a></h3>
+      <p data-fait="rect_desc" data-fr="Tissu plat, horizontal ou vertical, de 1 m à 3,5 m. Sur pôle ou en bannière murale — intérieur comme extérieur."
+         data-en="Flat fabric, horizontal or vertical, from 1 m to 3.5 m. On a pole or as a wall banner — indoor or outdoor.">Tissu plat, horizontal ou vertical, de 1 m à 3,5 m. Sur pôle ou en bannière murale — intérieur comme extérieur.</p></div></div>
     <div class="prod bases mont">
       <div class="planche" aria-hidden="true">
-        <picture><source type="image/webp" srcset="s/base_spike.webp"><img src="s/base_spike.jpg" alt="" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_croix.webp"><img src="s/base_croix.jpg" alt="" loading="lazy"></picture>
-        <picture><source type="image/webp" srcset="s/base_plaque.webp"><img src="s/base_plaque.jpg" alt="" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_voiture.webp"><img src="s/base_voiture.jpg" alt="" loading="lazy"></picture>
-        <picture><source type="image/webp" srcset="s/base_45.webp"><img src="s/base_45.jpg" alt="" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_90.webp"><img src="s/base_90.jpg" alt="" loading="lazy"></picture>
+        <picture><source type="image/webp" srcset="s/base_spike.webp"><img src="s/base_spike.jpg" alt="Base piquet à pelouse pour drapeau publicitaire" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_croix.webp"><img src="s/base_croix.jpg" alt="Base en croix pour drapeau publicitaire" loading="lazy"></picture>
+        <picture><source type="image/webp" srcset="s/base_plaque.webp"><img src="s/base_plaque.jpg" alt="Base à plaque pour drapeau publicitaire" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_voiture.webp"><img src="s/base_voiture.jpg" alt="Base voiture pour drapeau publicitaire" loading="lazy"></picture>
+        <picture><source type="image/webp" srcset="s/base_45.webp"><img src="s/base_45.jpg" alt="Base à 45° pour drapeau publicitaire" loading="lazy"></picture><picture><source type="image/webp" srcset="s/base_90.webp"><img src="s/base_90.jpg" alt="Base à 90° pour drapeau publicitaire" loading="lazy"></picture>
       </div>
       <div class="txt">
       <h3 data-fr="Bases" data-en="Bases">Bases</h3>
@@ -767,6 +771,8 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
   <h2 class="mont" data-fr="Cartes professionnelles" data-en="Business cards">Cartes professionnelles</h2>
   <p class="intro mont" data-fr="3,5 × 2 po. De 100 à 25 000 cartes. Dites-nous ce qu'il vous faut — on vous revient avec un prix."
      data-en="3.5 × 2 in. From 100 to 25,000 cards. Tell us what you need — we come back with a price.">3,5 × 2 po. De 100 à 25 000 cartes. Dites-nous ce qu'il vous faut — on vous revient avec un prix.</p>
+
+  <p class="intro mont" style="margin-top:-24px"><a href="cartes-d-affaires.html" data-fr="Voir la page cartes d'affaires →" data-en="See the business cards page →">Voir la page cartes d'affaires →</a></p>
 
   <div class="cartes-bloc metal biseau mont">
                 <figure style="margin:0">
@@ -867,8 +873,8 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
       <span class="role">Châteauguay, Québec</span>
     </div>
     <div>
-      <p data-fr="Le Groupe MCA, c'est un atelier de Châteauguay qui imprime des drapeaux publicitaires. Plus de 400 de ses drapeaux sont plantés devant des commerces du Québec. Cette confiance-là ne s'achète pas — elle se bâtit un drapeau à la fois, et à force, on sait ce qui tient dans le vent et ce qui se voit de loin."
-         data-en="Le Groupe MCA is a Châteauguay workshop printing advertising flags. More than 400 of its flags stand in front of Quebec businesses. That kind of trust isn't bought — it's built one flag at a time, and after enough of them, you know what holds up in the wind and what gets seen from far away.">Le Groupe MCA, c'est un atelier de Châteauguay qui imprime des drapeaux publicitaires. Plus de 400 de ses drapeaux sont plantés devant des commerces du Québec. Cette confiance-là ne s'achète pas — elle se bâtit un drapeau à la fois, et à force, on sait ce qui tient dans le vent et ce qui se voit de loin.</p>
+      <p data-fait="apropos" data-fr="Le Groupe MCA, c'est un atelier de Châteauguay qui imprime des drapeaux publicitaires. Plus de 600 drapeaux livrés. Cette confiance-là ne s'achète pas — elle se bâtit un drapeau à la fois, et à force, on sait ce qui tient dans le vent et ce qui se voit de loin."
+         data-en="Le Groupe MCA is a Châteauguay workshop printing advertising flags. More than 600 flags delivered. That kind of trust isn't bought — it's built one flag at a time, and after enough of them, you know what holds up in the wind and what gets seen from far away.">Le Groupe MCA, c'est un atelier de Châteauguay qui imprime des drapeaux publicitaires. Plus de 600 drapeaux livrés. Cette confiance-là ne s'achète pas — elle se bâtit un drapeau à la fois, et à force, on sait ce qui tient dans le vent et ce qui se voit de loin.</p>
       <ul class="puces">
         <li data-fr="Drapeaux publicitaires — beach et rectangulaires" data-en="Advertising flags — feather and rectangular">Drapeaux publicitaires — beach et rectangulaires</li>
         <li data-fr="Cartes professionnelles" data-en="Business cards">Cartes professionnelles</li>
@@ -966,11 +972,11 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
       <div class="si-drapeau"><label for="f-type" data-fr="Type" data-en="Type">Type</label>
         <select name="Type" id="f-type"><option>Beach</option><option>Rectangulaire</option></select></div>
       <div class="si-drapeau"><label for="f-grandeur" data-fr="Grandeur" data-en="Size">Grandeur</label>
-        <select name="Grandeur" id="f-grandeur"><option>1 m</option><option>2,5 m</option><option>3,5 m</option><option selected>4,5 m</option></select></div>
+        <select name="Grandeur" id="f-grandeur" data-fait="form_grandeur"><option>1 m</option><option>2,5 m</option><option>3,5 m</option><option selected>4,5 m</option></select></div>
       <div class="si-drapeau"><label for="f-impression" data-fr="Impression" data-en="Printing">Impression</label>
         <select name="Impression" id="f-impression"><option>1 côté</option><option>2 côtés</option></select></div>
       <div class="si-drapeau"><label for="f-decoupe" data-fr="Découpe" data-en="Cut">Découpe</label>
-        <select name="Découpe" id="f-decoupe"><option>Concave</option><option>Convexe</option><option>Flamme</option><option>Droit</option></select></div>
+        <select name="Découpe" id="f-decoupe" data-fait="form_decoupe"><option>Concave</option><option>Convexe</option><option>Flamme</option><option>Droit</option></select></div>
       <div class="si-drapeau"><label for="f-base" data-fr="Base" data-en="Base">Base</label>
         <select name="Base" id="f-base"><option>Piquet à pelouse</option><option>Croix</option><option>Plaque</option><option>Base voiture</option><option>45°</option><option>90°</option><option>Aucune</option></select></div>
       <div><label for="f-quantite" data-fr="Quantité" data-en="Quantity">Quantité</label><input type="number" name="Quantité" id="f-quantite" min="1" value="1"></div>
@@ -1021,6 +1027,9 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
          <a href="https://www.facebook.com/MCAdrapeau/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/legroupemca/" target="_blank" rel="noopener">Instagram</a></p></div>
     <div><h3 class="h-pied" data-fr="Raccourcis" data-en="Links">Raccourcis</h3>
       <p><a href="#realisations" data-fr="Réalisations" data-en="Our work">Réalisations</a><br>
+         <a href="drapeau-publicitaire.html" data-fr="Drapeaux publicitaires" data-en="Advertising flags">Drapeaux publicitaires</a><br>
+         <a href="beach-flag.html">Beach flag</a><br>
+         <a href="cartes-d-affaires.html" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</a><br>
          <a href="#app" data-fr="L'application" data-en="The app">L'application</a><br>
          <a href="#soumission" data-fr="Soumission" data-en="Quote">Soumission</a><br>
          <a href="#payer" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</a><br>

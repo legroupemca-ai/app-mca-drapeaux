@@ -60,6 +60,49 @@ footer{background:#0a0a0b;color:#f3f2ef}
 .pied p{color:#c4c4c9}
 .fin{max-width:var(--large);margin:0 auto;border-top:1px solid rgba(255,255,255,.09);padding:20px 24px;font-size:13px;color:#a3a3a8}
 @media(max-width:700px){.pied{grid-template-columns:1fr}}
+.parler,.parler *{box-sizing:border-box}
+.parler{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:14px;min-height:60px;padding:8px 28px 8px 9px;border-radius:100px;text-decoration:none;color:#fff;font-family:var(--f);line-height:1.15;-webkit-tap-highlight-color:transparent;cursor:pointer;touch-action:manipulation}
+.parler .p-ico{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.parler .p-ico svg{width:26px;height:26px;display:block}
+.parler .p-txt{display:flex;flex-direction:column;gap:2px;text-align:left}
+.parler .p-q{font-size:13px;font-weight:500}
+.parler .p-go{font-family:var(--titre);font-size:18px;font-weight:700;letter-spacing:.01em}
+.parler.seul .p-q{display:none}
+.parler.flot{display:none}
+.parler-ligne{margin-top:18px}
+.parler-bande{max-width:var(--large);margin:0 auto 72px;padding:0 24px}
+.parler-bande .boite{border-radius:28px;padding:clamp(28px,5vw,52px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 40px;color:#fff;background:radial-gradient(60% 120% at 90% 0%,rgba(140,70,255,.45),transparent 70%),radial-gradient(50% 100% at 0% 100%,rgba(47,107,255,.40),transparent 70%),linear-gradient(160deg,#16224a,#0b1532)}
+.parler-bande h2{font-family:var(--titre);font-size:clamp(26px,4vw,38px);line-height:1.1;margin:0 0 10px;color:#fff}
+.parler-bande p{margin:0;color:#d5def5;font-size:16px;max-width:46ch;line-height:1.5}
+.parler-bande p a{color:#fff;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.parler-bande p a:hover{color:#cfe0ff}
+.parler .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.parler:focus-visible{outline:3px solid #14213d;outline-offset:4px}
+.parler-bande .parler:focus-visible{outline-color:#fff}
+@media(max-width:700px){
+ .parler.flot{display:inline-flex;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:95;min-height:56px;padding:6px 20px 6px 6px;gap:10px}
+ .parler.flot .p-ico{width:44px;height:44px}
+ .parler.flot .p-q{display:none}
+ .parler.flot .p-go{font-size:16px}
+ .parler-bande{padding:0 14px;margin-bottom:40px}
+ .fin{padding-bottom:92px}
+ html,body,header{overflow-x:clip}
+ .parler:not(.flot){width:100%;justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){.parler,.parler *,.parler::before,.parler::after{animation:none!important;transition:none!important}}
+.parler{border:2.5px solid transparent;padding:6px 28px 6px 6px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 46%) padding-box,linear-gradient(180deg,#14214e,#0a1230) padding-box,linear-gradient(115deg,#2f6bff,#7b5cff 55%,#c04cff) border-box;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -6px 12px -4px rgba(47,107,255,.55),0 5px 0 #3a2fae,0 18px 30px -10px rgba(86,66,224,.65),0 0 22px rgba(95,110,255,.3);margin-bottom:5px;overflow:hidden;transition:transform .18s var(--ease,ease),box-shadow .18s var(--ease,ease),filter .18s}
+.parler .p-q{color:#cfdcff}
+.parler::after{content:"";position:absolute;top:0;bottom:0;left:0;width:34%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:translateX(-160%) skewX(-20deg);animation:parler-lueur 6.5s ease-in-out 2s infinite;pointer-events:none}
+@keyframes parler-lueur{0%{transform:translateX(-160%) skewX(-20deg)}26%,100%{transform:translateX(420%) skewX(-20deg)}}
+.parler:hover{transform:translateY(-2px);filter:brightness(1.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -6px 12px -4px rgba(47,107,255,.7),0 7px 0 #3a2fae,0 24px 34px -10px rgba(86,66,224,.75),0 0 28px rgba(95,110,255,.45)}
+.parler:active{transform:translateY(5px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -3px 8px rgba(47,107,255,.4),0 0 0 #3a2fae,0 6px 12px -6px rgba(86,66,224,.6)}
+.parler:focus-visible{outline-color:#7b5cff}
+.parler-bande .parler:focus-visible{outline-color:#fff}
+@media(min-width:701px){.parler{padding:4px 28px 4px 4px}}
+.parler .p-ico{width:54px;height:54px;background:none;box-shadow:none;border-radius:0}
+.parler .p-ico svg{width:36px;height:36px}
+@media(max-width:700px){.parler.flot .p-ico{width:46px;height:46px}.parler.flot .p-ico svg{width:30px;height:30px}.parler.flot{padding:4px 20px 4px 4px}}
+@media(min-width:701px){.parler.flot{display:inline-flex;position:fixed;right:24px;bottom:24px;z-index:95}.parler.flot .p-q{display:none}.fin{padding-bottom:96px}}
 </style>
 <script data-goatcounter="https://legroupemca.goatcounter.com/count" async src="s/count.js"></script>
 </head>
@@ -109,5 +152,9 @@ footer{background:#0a0a0b;color:#f3f2ef}
   </div>
   <div class="fin">© 2026 Le Groupe MCA</div>
 </footer>
+<a class="parler flot" href="https://m.me/MCAdrapeau" target="_blank" rel="noopener" title="Écrivez-nous sur Messenger">
+  <span class="p-ico" aria-hidden="true"><svg viewBox="0 0 512 512" focusable="false"><path fill="#fff" d="M256 0C114.6 0 0 106.6 0 238.1c0 74.9 37.2 141.7 95.4 185.4V512l87.3-47.9c23.3 6.5 48 10 73.3 10 141.4 0 256-106.6 256-238.1S397.4 0 256 0z"/><path fill="#0a1230" d="m282.1 321.3-65.2-69.6-127.2 69.6 139.9-148.5 66.8 69.6 125.6-69.6z"/></svg></span>
+  <span class="p-txt"><span class="p-go" data-fr="Parlez-nous" data-en="Talk to us">Parlez-nous</span><span class="sr" data-fr="(ouvre Messenger dans un nouvel onglet)" data-en="(opens Messenger in a new tab)">(ouvre Messenger dans un nouvel onglet)</span></span>
+</a>
 </body>
 </html>

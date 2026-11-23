@@ -128,7 +128,11 @@ nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{content:"";
 @media(max-width:1500px){nav{gap:14px} .bar{gap:10px} nav a.nav-secondaire{display:none} nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{right:-8px}}
 @media(max-width:980px){nav a:not(.gard):not(.btn-app){display:none} .bar b{display:none}}
 @media(max-width:520px){.social{display:none} nav{gap:10px} .btn-app span{display:none} .btn-app{padding:0 5px}
-  .btn-promo{padding:0 11px;font-size:12.5px} .btn-promo .long{display:none}}
+  .btn-promo{padding:0 11px;font-size:12.5px} .btn-promo .long{display:none}
+  .bar{padding:8px 10px;gap:6px} nav{gap:5px} .ico{height:32px}
+  nav a.gard{font-size:12px} .lang{min-width:0;width:32px;height:32px;padding:0;font-size:11.5px}
+  .btn-promo{height:32px;min-height:0;padding:0 8px;font-size:12px;gap:5px} .btn-promo .point{width:6px;height:6px}
+  .btn-app{height:32px;min-height:0} .btn-app img{width:22px;height:22px}}
 
 .hero{position:relative;overflow:hidden;padding:clamp(28px,5vw,64px) 0 0}
 .fond{position:absolute;inset:0;z-index:0}
@@ -633,7 +637,7 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
           <circle cx="26.6" cy="13.4" r="1.6" fill="#fff"/>
         </svg></a>
       <button class="lang gard" id="lang" type="button">EN</button>
-      <a class="btn-promo gard" href="#payer" aria-label="Payer ma facture par carte"><span data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</span></a>
+      <a class="btn-promo gard" href="#payer" aria-label="Payer ma facture par carte"><span data-fr="Payer&lt;span class=&quot;long&quot;&gt; ma facture&lt;/span&gt;" data-en="Pay&lt;span class=&quot;long&quot;&gt; my invoice&lt;/span&gt;">Payer<span class="long"> ma facture</span></span></a>
                   <a class="btn-promo gard" href="https://www.facebook.com/MCAdrapeau/" target="_blank" rel="noopener"
          aria-label="Voir la promo du moment sur notre page Facebook">
         <span class="point" aria-hidden="true"></span>

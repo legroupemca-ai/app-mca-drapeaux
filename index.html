@@ -32,13 +32,11 @@ try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.
 <meta property="og:title" data-fait="idx_og_titre" content="Le Groupe MCA | Drapeaux publicitaires et cartes d&#x27;affaires au Québec">
 <meta property="og:description" data-fait="idx_og_desc" content="Votre logo, votre marque, debout dans le vent.">
 <meta property="og:image" content="https://legroupemca.com/s/logo-chrome.png">
+<meta property="og:site_name" content="Le Groupe MCA">
+<meta property="og:locale" content="fr_CA">
+<meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"Le Groupe MCA",
- "url":"https://legroupemca.com/","logo":"https://legroupemca.com/s/logo-chrome.png",
- "telephone":"+1-514-916-6162","email":"info@legroupemca.com",
- "address":{"@type":"PostalAddress","addressLocality":"Châteauguay","addressRegion":"QC","addressCountry":"CA"},
- "areaServed":"Québec",
- "sameAs":["https://www.facebook.com/MCAdrapeau/","https://www.instagram.com/legroupemca/"]}
+{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://legroupemca.com/#entreprise","name":"Le Groupe MCA","url":"https://legroupemca.com/","logo":"https://legroupemca.com/s/logo-chrome.png","image":"https://legroupemca.com/s/logo-chrome.png","telephone":"+1-514-916-6162","email":"info@legroupemca.com","description":"Drapeaux publicitaires, cartes d'affaires, flyers, cartes postales et accroche-portes pour les entreprises du Québec.","address":{"@type":"PostalAddress","addressLocality":"Châteauguay","addressRegion":"QC","addressCountry":"CA"},"areaServed":[{"@type":"City","name":"Châteauguay"},{"@type":"AdministrativeArea","name":"Montérégie"},{"@type":"AdministrativeArea","name":"Rive-Sud de Montréal"},{"@type":"City","name":"Montréal"},{"@type":"AdministrativeArea","name":"Québec"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:00","closes":"15:00"}],"sameAs":["https://www.facebook.com/MCAdrapeau/","https://www.instagram.com/legroupemca/"]}]}
 </script>
 <style>
 :root{
@@ -126,6 +124,7 @@ nav a,.btn-promo,.btn-app{white-space:nowrap}
 nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social){position:relative}
 nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{content:"";position:absolute;right:-12px;top:50%;width:2px;height:1.35em;transform:translateY(-50%);background:var(--rouge);border-radius:1px}
 @media(max-width:1500px){nav{gap:14px} .bar{gap:10px} nav a.nav-secondaire{display:none} nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{right:-8px}}
+@media(min-width:981px) and (max-width:1380px){nav a[href="#nous"]{display:none}}
 @media(max-width:980px){nav a:not(.gard):not(.btn-app){display:none} .bar b{display:none}}
 @media(max-width:520px){.social{display:none} nav{gap:10px} .btn-app span{display:none} .btn-app{padding:0 5px}
   .btn-promo{padding:0 11px;font-size:12.5px} .btn-promo .long{display:none}
@@ -147,6 +146,12 @@ nav > a:not(.gard):not(.btn-promo):not(.btn-app):not(.social)::after{content:"";
 .badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;padding:6px 14px 6px 10px;
   border-radius:100px;font-size:13px;font-weight:500;color:var(--blanc);
   background:rgba(0,0,0,.04);border:1px solid var(--ligne-2)}
+a.badge-lien{text-decoration:none;cursor:pointer;font-weight:600;border-color:var(--rouge-vif);
+  box-shadow:0 2px 0 rgba(205,12,24,.25);transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+a.badge-lien:hover,a.badge-lien:focus-visible{background:var(--rouge-vif);color:#fff;transform:translateY(-1px);box-shadow:0 6px 14px -6px rgba(205,12,24,.6)}
+a.badge-lien:active{transform:translateY(1px);box-shadow:none}
+a.badge-lien:focus-visible{outline:2px solid var(--rouge-vif);outline-offset:3px}
+a.badge-lien:hover::before,a.badge-lien:focus-visible::before{background:#fff}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--rouge-vif);
   }
 h1{font-family:var(--titre);font-variation-settings:'wdth' 112;font-size:clamp(2.2rem,4.3vw,3.7rem);
@@ -378,6 +383,18 @@ h2{font-family:var(--titre);font-variation-settings:"wdth" 108;font-size:clamp(1
 .carte-flip[aria-pressed="true"] .carte-int{transform:rotateY(180deg)}
 .carte-flip:focus-visible{outline:2px solid var(--rouge,#c8102e);outline-offset:6px;border-radius:12px}
 .carte-astuce{margin-top:14px;font-size:13px;color:var(--gris-fonce);text-align:center}
+.carte-onglet{display:flex;align-items:center;justify-content:center;gap:8px;margin:16px auto 0;min-height:44px;padding:10px 20px;
+  border:2px solid var(--rouge-vif);border-radius:100px;background:transparent;color:var(--blanc);font:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  animation:onglet-pouls 2.6s ease-in-out infinite;transition:background .2s,color .2s}
+.carte-onglet:hover,.carte-onglet:focus-visible{background:var(--rouge-vif);color:#fff;animation:none}
+.carte-onglet:focus-visible{outline:2px solid var(--rouge-vif);outline-offset:3px}
+.onglet-ico{display:inline-block;font-size:20px;line-height:1;animation:onglet-tour 3.2s linear infinite}
+.carte-onglet .o-verso{display:none}
+.carte-onglet.est-verso .o-recto{display:none}
+.carte-onglet.est-verso .o-verso{display:inline}
+@keyframes onglet-tour{to{transform:rotate(360deg)}}
+@keyframes onglet-pouls{0%,100%{box-shadow:0 0 0 0 rgba(205,12,24,.45)}60%{box-shadow:0 0 0 10px rgba(205,12,24,0)}}
+@media(prefers-reduced-motion:reduce){.onglet-ico,.carte-onglet{animation:none}}
 @media(prefers-reduced-motion:reduce){.carte-int{transition:none}}
 .carte-opts{display:grid;gap:18px}
 .carte-opts .rangee{display:flex;flex-direction:column;gap:8px}
@@ -597,7 +614,8 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 @media(max-width:700px){.parler.flot .p-ico{width:46px;height:46px}.parler.flot .p-ico svg{width:30px;height:30px}.parler.flot{padding:4px 20px 4px 4px}}
 @media(min-width:701px){.parler.flot{display:inline-flex;position:fixed;right:24px;bottom:24px;z-index:95}.parler.flot .p-q{display:none}.fin{padding-bottom:96px}}
 </style>
-<script data-goatcounter="https://legroupemca.goatcounter.com/count" async src="s/count.js"></script>
+<script data-goatcounter="https://legroupemca.goatcounter.com/count" async src="s/count.js"></script><script src="s/clics.js" defer></script>
+<style>.avis-ligne{display:flex;justify-content:center;padding:8px 24px 28px}.avis-haut{justify-content:flex-start;padding:0 0 16px}.avis-pied{justify-content:flex-start;padding:18px 0 0}.avis-btn{display:inline-flex;align-items:center;gap:12px;max-width:100%;min-height:52px;padding:6px 24px;border-radius:100px;text-decoration:none;color:#fff;font-family:var(--f,inherit);font-weight:600;font-size:16px;border:2.5px solid transparent;background:linear-gradient(180deg,#14214e,#0a1230) padding-box,linear-gradient(115deg,#ffb400,#ffd34d 50%,#ff9a1f) border-box;box-shadow:0 4px 0 #a86a00,0 14px 26px -10px rgba(255,170,0,.5);transition:transform .18s,box-shadow .18s}.avis-btn:hover{transform:translateY(-2px)}.avis-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a86a00}.avis-btn:focus-visible{outline:3px solid #ffd34d;outline-offset:3px}.avis-btn .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.avis-et{color:#ffc83d;letter-spacing:2px;font-size:19px;text-shadow:0 0 10px rgba(255,200,61,.55)}.avis-btn span:not(.sr){white-space:nowrap}.avis-haut{padding-bottom:20px}@media(max-width:420px){.avis-btn{gap:8px;padding:6px 14px;font-size:14.5px}.avis-et{letter-spacing:0;font-size:14px}}.racc{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:13px;line-height:1.35}.racc a{display:block}.racc a{padding:8px 0}.plan{margin-top:10px}.plan>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:6px 20px;border-radius:100px;border:1.5px solid rgba(255,255,255,.28);background:transparent;color:#f3f2ef;font-weight:600;font-size:14.5px;line-height:1.2;font-family:inherit;-webkit-tap-highlight-color:transparent}.plan>summary::-webkit-details-marker{display:none}.plan>summary::marker{content:""}.plan>summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .25s}.plan[open]>summary::after{transform:rotate(-135deg) translateY(-2px)}.plan>summary:hover{border-color:var(--rouge-lisible,#FF5A64)}.plan>summary:focus-visible{outline:3px solid #ffd34d;outline-offset:3px}.plan .racc{grid-template-columns:1fr;gap:0;margin-top:8px}.plan .racc a{padding:12px 4px;min-height:44px;box-sizing:border-box;border-bottom:1px solid var(--ligne,rgba(255,255,255,.09))}@media(min-width:700px){.plan .racc{grid-template-columns:1fr 1fr;gap:0 24px}}</style>
 </head>
 <body>
 <div id="intro" aria-hidden="true"><picture><source type="image/webp" srcset="s/logo-chrome.webp"><img src="s/logo-chrome.png" alt="" width="120" height="145" fetchpriority="low"></picture></div>
@@ -650,11 +668,12 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 
 <main id="contenu">
 <div class="hero">
-  <div class="fond"><picture><source type="image/webp" srcset="s/gal/g11-fond.webp"><img src="s/gal/g11.jpg" alt="" width="1050" height="1400" fetchpriority="high" decoding="async"></picture></div>
+  <div class="fond"><picture><source type="image/webp" srcset="s/gal/g11-fond.webp"><img src="s/gal/g11.jpg" alt="Beach flag publicitaire imprimé, installé devant une voiture — Le Groupe MCA, entreprise du Québec" width="1050" height="1400" fetchpriority="high" decoding="async"></picture></div>
 
   <div class="hero-in">
     <div>
-      <span class="badge" data-fr="Vérification gratuite de votre fichier" data-en="Free file check">Vérification gratuite de votre fichier</span>
+      <div class="avis-ligne avis-haut"><a class="avis-btn" href="https://g.page/r/CbyoenZC2dYoEBM/review" target="_blank" rel="noopener"><span class="avis-et" aria-hidden="true">★★★★★</span><span data-fr="Laissez-nous un avis Google" data-en="Leave us a Google review">Laissez-nous un avis Google</span><span class="sr" data-fr="(ouvre Google dans un nouvel onglet)" data-en="(opens Google in a new tab)">(ouvre Google dans un nouvel onglet)</span></a></div>
+      <a class="badge badge-lien" href="scannez-votre-carte.html" data-fr="Scannez votre carte gratuitement →" data-en="Scan your card for free →">Scannez votre carte gratuitement →</a>
       <h1 data-fr="&lt;span class=&quot;h1-mot&quot;&gt;Drapeaux publicitaires&lt;/span&gt;&lt;br&gt;Votre logo,&lt;br&gt;votre marque,&lt;br&gt;debout&lt;br&gt;&lt;em&gt;dans le vent&lt;/em&gt;."
           data-en="&lt;span class=&quot;h1-mot&quot;&gt;Advertising flags&lt;/span&gt;&lt;br&gt;Your logo,&lt;br&gt;your brand,&lt;br&gt;standing&lt;br&gt;&lt;em&gt;in the wind&lt;/em&gt;."><span class="h1-mot">Drapeaux publicitaires</span><br>Votre logo,<br>votre marque,<br>debout<br><em>dans le vent</em>.</h1>
       <p class="h1-sous" data-fr="Drapeaux publicitaires (beach flags et rectangulaires), cartes d'affaires et codes QR personnalisés, pour les commerces du Québec." data-en="Advertising flags (feather and rectangular), business cards and custom QR codes, for Quebec businesses.">Drapeaux publicitaires (beach flags et rectangulaires), cartes d'affaires et codes QR personnalisés, pour les commerces du Québec.</p>
@@ -690,11 +709,11 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
         <span class="etiq" data-fr="Drapeaux" data-en="Flags">Drapeaux</span>
       </a>
       <a class="tuile t-aff" href="cartes-d-affaires.html">
-        <img src="s/hero/cartes-affaires.webp" alt="" width="800" height="684" loading="lazy" fetchpriority="low" decoding="async">
+        <img src="s/hero/cartes-affaires.webp" alt="Cartes d'affaires imprimées pour entreprises — Le Groupe MCA, entreprise du Québec" width="800" height="684" loading="lazy" fetchpriority="low" decoding="async">
         <span class="etiq" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</span>
       </a>
       <a class="tuile t-post" href="#soumission">
-        <img src="s/hero/carte-postale.webp" alt="" width="800" height="684" loading="lazy" fetchpriority="low" decoding="async">
+        <img src="s/hero/carte-postale.webp" alt="Cartes postales publicitaires imprimées — Le Groupe MCA, entreprise du Québec" width="800" height="684" loading="lazy" fetchpriority="low" decoding="async">
         <span class="etiq" data-fr="Cartes postales" data-en="Postcards">Cartes postales</span>
       </a>
     </div>
@@ -831,7 +850,11 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
           <picture><source type="image/webp" srcset="s/carte-mca-verso.webp"><img class="carte-photo carte-verso" src="s/carte-mca-verso.png" alt="Carte professionnelle Le Groupe MCA — verso" loading="lazy"></picture>
         </span>
       </button>
-      <figcaption class="carte-astuce" data-fr="↻ Touchez la carte pour voir le verso" data-en="↻ Tap the card to see the back">↻ Touchez la carte pour voir le verso</figcaption>
+      <button type="button" class="carte-onglet" id="carte-onglet" aria-label="Voir le verso de la carte" data-fr-label="Voir le verso de la carte" data-en-label="See the back of the card" data-fr-label2="Voir le recto de la carte" data-en-label2="See the front of the card">
+        <span class="onglet-ico" aria-hidden="true">↻</span>
+        <span class="o-recto" data-fr="Voir le verso" data-en="See the back">Voir le verso</span>
+        <span class="o-verso" data-fr="Voir le recto" data-en="See the front">Voir le recto</span>
+      </button>
     </figure>
     <div class="carte-opts">
       <div class="rangee">
@@ -961,16 +984,16 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
           <span class="et" data-fr="Découpe — la forme du bord supérieur" data-en="Cut — the shape of the top edge">Découpe — la forme du bord supérieur</span>
           <div class="coupes" role="group" id="seg-decoupe">
             <button type="button" data-v="Concave" aria-pressed="true">
-              <img src="s/decoupe_3.png" alt="" loading="lazy">
+              <img src="s/decoupe_3.png" alt="Beach flag, découpe concave du bas" loading="lazy">
               <b>Concave</b><small data-fr="Courbe rentrante" data-en="Inward curve">Courbe rentrante</small></button>
             <button type="button" data-v="Convexe" aria-pressed="false">
-              <img src="s/decoupe_2.png" alt="" loading="lazy">
+              <img src="s/decoupe_2.png" alt="Beach flag, découpe convexe du bas" loading="lazy">
               <b>Convexe</b><small data-fr="Courbe sortante" data-en="Outward curve">Courbe sortante</small></button>
             <button type="button" data-v="Flamme" aria-pressed="false">
-              <img src="s/decoupe_1.png" alt="" loading="lazy">
+              <img src="s/decoupe_1.png" alt="Beach flag, découpe flamme du bas" loading="lazy">
               <b>Flamme</b><small data-fr="Forme effilée" data-en="Tapered shape">Forme effilée</small></button>
             <button type="button" data-v="Droit" aria-pressed="false">
-              <img src="s/decoupe_4.png" alt="" loading="lazy">
+              <img src="s/decoupe_4.png" alt="Beach flag, découpe droite du bas" loading="lazy">
               <b>Droit</b><small data-fr="Bord arrondi net" data-en="Clean rounded edge">Bord arrondi net</small></button>
           </div>
           <span class="mini" data-fr="La découpe n'affecte pas le prix." data-en="The cut does not affect the price.">La découpe n'affecte pas le prix.</span>
@@ -1078,26 +1101,12 @@ footer{background:#0a0a0b;border-top:1px solid var(--ligne);margin-top:0;
 <footer id="contact">
   <div class="pied">
     <div><picture><source type="image/webp" srcset="s/logo-chrome.webp"><img class="logo-pied" src="s/logo-chrome.png" alt="" width="60" height="72"></picture><div class="marque">Le Groupe<br>MCA</div>
-      <p style="margin-top:14px;color:var(--gris)" data-fr="Drapeaux publicitaires<br>Châteauguay, Québec" data-en="Advertising flags<br>Châteauguay, Quebec">Drapeaux publicitaires<br>Châteauguay, Québec</p></div>
+      <p style="margin-top:14px;color:var(--gris)" data-fr="Drapeaux publicitaires<br>Châteauguay, Québec" data-en="Advertising flags<br>Châteauguay, Quebec">Drapeaux publicitaires<br>Châteauguay, Québec</p><div class="avis-ligne avis-pied"><a class="avis-btn" href="https://g.page/r/CbyoenZC2dYoEBM/review" target="_blank" rel="noopener"><span class="avis-et" aria-hidden="true">★★★★★</span><span data-fr="Laissez-nous un avis Google" data-en="Leave us a Google review">Laissez-nous un avis Google</span><span class="sr" data-fr="(ouvre Google dans un nouvel onglet)" data-en="(opens Google in a new tab)">(ouvre Google dans un nouvel onglet)</span></a></div></div>
     <div><h3 class="h-pied">Contact</h3>
       <p><a href="tel:+15149166162">514 916-6162</a><br><a href="mailto:info@legroupemca.com">info@legroupemca.com</a><br>
          <a href="https://www.facebook.com/MCAdrapeau/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/legroupemca/" target="_blank" rel="noopener">Instagram</a></p></div>
-    <div><h3 class="h-pied" data-fr="Raccourcis" data-en="Links">Raccourcis</h3>
-      <p><a href="#realisations" data-fr="Réalisations" data-en="Our work">Réalisations</a><br>
-         <a href="drapeau-publicitaire.html" data-fr="Drapeaux publicitaires" data-en="Advertising flags">Drapeaux publicitaires</a><br>
-         <a href="beach-flag.html">Beach flag</a><br>
-         <a href="cartes-d-affaires.html" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</a><br>
-         <a href="flyers.html">Flyers</a><br>
-         <a href="accroche-portes.html" data-fr="Accroche-portes" data-en="Door hangers">Accroche-portes</a><br>
-         <a href="cartes-postales.html" data-fr="Cartes postales" data-en="Postcards">Cartes postales</a><br>
-         <a href="#app" data-fr="L'application" data-en="The app">L'application</a><br>
-         <a href="#soumission" data-fr="Soumission" data-en="Quote">Soumission</a><br>
-         <a href="#payer" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</a><br>
-         <a href="confidentialite.html" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a><br>
-         <a href="conditions.html" data-fr="Conditions de vente" data-en="Terms of sale">Conditions de vente</a></p></div>
+    <div><h3 class="h-pied" data-fr="Raccourcis" data-en="Links">Raccourcis</h3><div class="racc"><a href="/">Accueil</a><a href="drapeau-publicitaire.html" data-fr="Drapeaux publicitaires" data-en="Advertising flags">Drapeaux publicitaires</a><a href="beach-flag.html">Beach flag</a><a href="cartes-d-affaires.html" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</a><a href="flyers.html">Flyers</a></div><details class="plan"><summary data-fr="Plan du site" data-en="Site map">Plan du site</summary><div class="racc"><a href="/">Accueil</a><a href="#realisations" data-fr="Réalisations" data-en="Our work">Réalisations</a><a href="drapeau-publicitaire.html" data-fr="Drapeaux publicitaires" data-en="Advertising flags">Drapeaux publicitaires</a><a href="beach-flag.html">Beach flag</a><a href="cartes-d-affaires.html" data-fr="Cartes d'affaires" data-en="Business cards">Cartes d'affaires</a><a href="flyers.html">Flyers</a><a href="accroche-portes.html" data-fr="Accroche-portes" data-en="Door hangers">Accroche-portes</a><a href="cartes-postales.html" data-fr="Cartes postales" data-en="Postcards">Cartes postales</a><a href="scannez-votre-carte.html" data-fr="Scannez votre carte" data-en="Scan your card">Scannez votre carte</a><a href="beach-flag-tailles.html">Beach flag : les tailles</a><a href="beach-flag-decoupes.html">Beach flag : les découpes</a><a href="drapeau-rectangulaire.html">Drapeau rectangulaire</a><a href="badges-cordons-porte-cles.html">Badges, cordons et porte-clés</a><a href="drapeaux-imprimes-chateauguay.html">Châteauguay</a><a href="drapeaux-imprimes-rive-sud.html">Rive-Sud</a><a href="drapeaux-imprimes-monteregie.html">Montérégie</a><a href="drapeaux-imprimes-quebec.html">Partout au Québec</a><a href="drapeaux-imprimes-montreal.html">Montréal</a><a href="drapeaux-imprimes-laval.html">Laval</a><a href="drapeaux-imprimes-lanaudiere.html">Lanaudière</a><a href="drapeaux-imprimes-laurentides.html">Laurentides</a><a href="drapeaux-imprimes-capitale-nationale.html">Capitale-Nationale</a><a href="drapeaux-imprimes-estrie.html">Estrie</a><a href="drapeaux-imprimes-gaspesie.html">Gaspésie</a><a href="drapeaux-imprimes-saguenay-lac-saint-jean.html">Saguenay–Lac-Saint-Jean</a><a href="drapeaux-imprimes-chaudiere-appalaches.html">Chaudière-Appalaches</a><a href="drapeaux-imprimes-mauricie.html">Mauricie</a><a href="drapeaux-courtiers-immobiliers.html">Courtiers immobiliers</a><a href="#app" data-fr="L'application" data-en="The app">L'application</a><a href="#soumission" data-fr="Soumission" data-en="Quote">Soumission</a><a href="#payer" data-fr="Payer ma facture" data-en="Pay my invoice">Payer ma facture</a><a href="confidentialite.html" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a><a href="conditions.html" data-fr="Conditions de vente" data-en="Terms of sale">Conditions de vente</a></div></details></div>
   </div>
-  <style>.avis-ligne{display:flex;justify-content:center;padding:8px 24px 28px}.avis-btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:6px 24px;border-radius:100px;text-decoration:none;color:#fff;font-family:var(--f,inherit);font-weight:600;font-size:16px;border:2.5px solid transparent;background:linear-gradient(180deg,#14214e,#0a1230) padding-box,linear-gradient(115deg,#ffb400,#ffd34d 50%,#ff9a1f) border-box;box-shadow:0 4px 0 #a86a00,0 14px 26px -10px rgba(255,170,0,.5);transition:transform .18s,box-shadow .18s}.avis-btn:hover{transform:translateY(-2px)}.avis-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a86a00}.avis-btn:focus-visible{outline:3px solid #ffd34d;outline-offset:3px}.avis-btn .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.avis-et{color:#ffc83d;letter-spacing:2px;font-size:19px;text-shadow:0 0 10px rgba(255,200,61,.55)}</style>
-<div class="avis-ligne"><a class="avis-btn" href="https://g.page/r/CbyoenZC2dYoEBM/review" target="_blank" rel="noopener"><span class="avis-et" aria-hidden="true">★★★★★</span><span data-fr="Laissez-nous un avis Google" data-en="Leave us a Google review">Laissez-nous un avis Google</span><span class="sr" data-fr="(ouvre Google dans un nouvel onglet)" data-en="(opens Google in a new tab)">(ouvre Google dans un nouvel onglet)</span></a></div>
   <div class="fin">© 2026 Le Groupe MCA</div>
 </footer>
 <a class="parler flot" href="https://m.me/MCAdrapeau" target="_blank" rel="noopener" title="Écrivez-nous sur Messenger">
@@ -1798,8 +1807,37 @@ addEventListener('scroll', () => {
   jauge.style.width = (h > 0 ? scrollY/h*100 : 0) + '%';
 }, {passive:true});
 
-document.querySelectorAll('.carte-flip').forEach(b => b.addEventListener('click', () =>
-  b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true')));
+(function(){
+  const flip = document.querySelector('.carte-flip'), tab = document.getElementById('carte-onglet');
+  if(!flip || !tab) return;
+  const bloc = flip.closest('.cartes-bloc');
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timer = null, pause = false, visible = false, repriseAt = 0;
+  const verso = () => flip.getAttribute('aria-pressed') === 'true';
+  function maj(){
+    const v = verso();
+    tab.classList.toggle('est-verso', v);
+    tab.setAttribute('aria-label', tab.dataset[(LANG==='fr'?'fr':'en') + (v ? 'Label2' : 'Label')]);
+  }
+  function basculer(){ flip.setAttribute('aria-pressed', verso() ? 'false' : 'true'); maj(); }
+  window.majCarteOnglet = maj;
+  function boucle(){
+    clearTimeout(timer);
+    if(reduit || !visible) return;
+    timer = setTimeout(() => { if(!pause && Date.now() >= repriseAt) basculer(); boucle(); }, 4200);
+  }
+  const arret = (ms) => { repriseAt = Date.now() + ms; };
+  flip.addEventListener('click', () => { basculer(); arret(9000); });
+  tab.addEventListener('click', () => { basculer(); arret(9000); });
+  bloc.addEventListener('mouseenter', () => pause = true);
+  bloc.addEventListener('mouseleave', () => pause = false);
+  bloc.addEventListener('touchstart', () => arret(9000), {passive:true});
+  bloc.addEventListener('focusin', () => pause = true);
+  bloc.addEventListener('focusout', () => pause = false);
+  if('IntersectionObserver' in window)
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; boucle(); }, {threshold:.4}).observe(flip);
+  maj();
+})();
 
 const bt = document.getElementById('lang');
 bt.addEventListener('click', () => {
@@ -1810,7 +1848,7 @@ bt.addEventListener('click', () => {
   document.querySelectorAll('[data-fr-label]').forEach(el =>
     el.setAttribute('aria-label', LANG === 'fr' ? el.dataset.frLabel : el.dataset.enLabel));
   if (etat.logo) depot.querySelector('b').textContent = LANG==='fr' ? 'Logo posé ✓' : 'Logo applied ✓';
-  rendreGalerie(); dessinerToile(); majRecap();
+  rendreGalerie(); dessinerToile(); majRecap(); if (window.majCarteOnglet) majCarteOnglet();
   const envoi = devis.querySelector('button[type=submit]');
   if (devis.dataset.etat === 'envoi') envoi.textContent = LANG === 'fr' ? 'Envoi en cours…' : 'Sending…';
   if (devis.dataset.etat === 'envoye') envoi.textContent = LANG === 'fr' ? 'Envoyée ✓' : 'Sent ✓';

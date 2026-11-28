@@ -3,7 +3,7 @@
   "short_name": "MCA Drapeaux",
   "description": "Configurateur de drapeaux publicitaires — Le Groupe MCA",
   "start_url": "./app.html",
-  "scope": "./",
+  "scope": "./app.html",
   "display": "standalone",
   "background_color": "#0d0d0d",
   "theme_color": "#CD0C18",
